@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حمزاوي العقارية | Hamzawy Real Estate</title>
+    
+    <!-- خط القاهرة العصري الفاخر -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- مكتبة الأيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        royal: {
+                            950: '#060d1f',
+                            900: '#0a1633',
+                            800: '#10224d',
+                            700: '#18326e',
+                        },
+                        gold: {
+                            300: '#f5d98e',
+                            400: '#e8c05b',
+                            500: '#d4af37',
+                            600: '#b38f22',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #060d1f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060d1f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 9999px;
+        }
+
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        }
+        .gold-glow-hover:hover {
+            box-shadow: 0 10px 35px rgba(212, 175, 55, 0.45);
+        }
+
+        .panoramic-card .bg-img {
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .panoramic-card:hover .bg-img {
+            transform: scale(1.08);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-msg {
+            animation: fadeInUp 0.35s ease-out forwards;
+        }
+
+        @keyframes pulseGold {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+            50% { box-shadow: 0 0 0 14px rgba(212, 175, 55, 0); }
+        }
+        .bot-pulse {
+            animation: pulseGold 2.5s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between bg-royal-950 selection:bg-gold-500 selection:text-royal-950">
+
+    <!-- ===================================================================== -->
+    <!-- 1. الهيدر العلوي (Header)                                             -->
+    <!-- ===================================================================== -->
+    <header class="sticky top-0 z-40 w-full bg-royal-950/95 backdrop-blur-md border-b border-gold-500/25 shadow-lg">
+        <div class="w-full px-4 sm:px-8 lg:px-10 py-3 flex flex-wrap items-center justify-between gap-3">
+            
+            <!-- أقصى اليمين: شعار واسم حمزاوي العقارية -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-royal-950 shadow-lg group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-crown text-xl sm:text-2xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl sm:text-2xl font-black tracking-wide text-white leading-none">
+                        حمزاوي <span class="text-gold-400">العقارية</span>
+                    </span>
+                    <span class="text-[10px] sm:text-xs text-slate-400 font-semibold tracking-wider mt-1">
+                        HAMZAWY REAL ESTATE
+                    </span>
+                </div>
+            </a>
+
+            <!-- أقصى اليسار (أعلى شمال الموقع): أيقونات الوحدات والمساحات + أزرار الحسابات -->
+            <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                
+                <!-- زر/أيقونة الوحدات -->
+                <button onclick="triggerBotFromHeader('units')" 
+                        class="group flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-royal-800/90 hover:bg-gradient-to-r hover:from-gold-500 hover:to-gold-400 text-white hover:text-royal-950 border border-gold-500/40 transition-all duration-300 shadow-md gold-glow-hover cursor-pointer">
+                    <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gold-500/20 group-hover:bg-royal-950/15 flex items-center justify-center text-gold-400 group-hover:text-royal-950 transition-colors">
+                        <i class="fa-solid fa-building text-sm sm:text-base"></i>
+                    </span>
+                    <div class="text-right">
+                        <span class="block text-xs sm:text-sm font-extrabold leading-tight">الوحدات</span>
+                        <span class="hidden xl:block text-[10px] opacity-75 font-medium">استفسر الآن</span>
+                    </div>
+                </button>
+
+                <!-- زر/أيقونة المساحات -->
+                <button onclick="triggerBotFromHeader('areas')" 
+                        class="group flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-royal-800/90 hover:bg-gradient-to-r hover:from-gold-500 hover:to-gold-400 text-white hover:text-royal-950 border border-gold-500/40 transition-all duration-300 shadow-md gold-glow-hover cursor-pointer">
+                    <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gold-500/20 group-hover:bg-royal-950/15 flex items-center justify-center text-gold-400 group-hover:text-royal-950 transition-colors">
+                        <i class="fa-solid fa-ruler-combined text-sm sm:text-base"></i>
+                    </span>
+                    <div class="text-right">
+                        <span class="block text-xs sm:text-sm font-extrabold leading-tight">المساحات</span>
+                        <span class="hidden xl:block text-[10px] opacity-75 font-medium">المخططات المتاحة</span>
+                    </div>
+                </button>
+
+                <!-- فاصل بصري -->
+                <div class="h-7 w-[1px] bg-gold-500/25 hidden sm:block"></div>
+
+                <!-- منطقة أزرار تسجيل الدخول (تتغير ديناميكياً حسب حالة الدخول: زائر / عميل / أدمن) -->
+                <div id="authHeaderControls" class="flex items-center gap-2">
+                    <!-- يتم تعبئتها عبر الجافاسكريبت -->
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- شريط تنبيه خاص بالأدمن يظهر فقط عند تسجيل دخول الأدمن               -->
+    <!-- ===================================================================== -->
+    <div id="adminBanner" class="hidden w-full bg-gradient-to-l from-gold-600 via-gold-500 to-gold-400 text-royal-950 px-4 sm:px-8 py-2.5 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2 font-extrabold text-xs sm:text-sm">
+                <i class="fa-solid fa-shield-halved text-base"></i>
+                <span>وضع الإدارة (Admin Mode): لديك صلاحية كاملة لإضافة مشاريع وصور جديدة وتحديث الموقع مباشرة.</span>
+            </div>
+            <button onclick="openAdminAddModal()" class="px-3.5 py-1.5 rounded-lg bg-royal-950 text-gold-400 hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
+                <i class="fa-solid fa-circle-plus"></i>
+                <span>إضافة مشروع / صور جديدة</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 2. وسط الشاشة: 3 بطاقات مصورة كبيرة بحجم الشاشة جنباً إلى جنب         -->
+    <!-- ===================================================================== -->
+    <main class="flex-grow flex flex-col justify-center w-full">
+        
+        <div class="w-full px-4 sm:px-8 pt-4 pb-3 text-center">
+            <p class="text-gold-400 text-xs sm:text-sm font-bold tracking-wider uppercase mb-1">
+                رؤية معمارية فاخرة تليق بطموحك
+            </p>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white">
+                اكتشف مشاريع <span class="text-gold-400">حمزاوي العقارية</span>
+            </h1>
+        </div>
+
+        <!-- الشبكة البانورامية الثلاثية بحجم الشاشة -->
+        <section class="w-full px-4 sm:px-8 pb-6 flex-grow flex items-stretch">
+            <div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 min-h-[66vh] lg:min-h-[71vh]">
+                
+                <!-- البطاقة الأولى: أنظمة التقسيط -->
+                <div onclick="openSectionModal('installments')" 
+                     class="panoramic-card group relative rounded-3xl overflow-hidden border-2 border-gold-500/30 hover:border-gold-400 cursor-pointer shadow-2xl gold-glow-hover flex flex-col justify-end min-h-[250px] lg:min-h-full">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80" 
+                         onerror="this.src='https://placehold.co/800x1000/0a1633/d4af37?text=أنظمة+التقسيط'"
+                         alt="أنظمة التقسيط" 
+                         class="bg-img absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-950 via-royal-950/60 to-royal-900/20 group-hover:via-royal-950/45 transition-all duration-500"></div>
+                    
+                    <div class="absolute top-5 right-5 bg-royal-950/80 backdrop-blur-md border border-gold-500/40 text-gold-400 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span>
+                        تسهيلات حصرية
+                    </div>
+
+                    <div class="relative z-10 p-6 sm:p-8 flex flex-col items-start">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center shadow-xl mb-4 group-hover:-translate-y-2 transition-transform duration-300">
+                            <i class="fa-solid fa-hand-holding-dollar text-3xl sm:text-4xl"></i>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white group-hover:text-gold-300 transition-colors mb-2">
+                            أنظمة التقسيط
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base font-medium mb-5 max-w-md">
+                            خطط سداد مرنة ومقدمات تبدأ بأقل نسبة وفترات تقسيط طويلة بدون فوائد.
+                        </p>
+                        <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 group-hover:bg-gold-500 text-white group-hover:text-royal-950 backdrop-blur-md border border-white/20 group-hover:border-gold-400 font-bold text-sm transition-all">
+                            <span>عرض أنظمة السداد</span>
+                            <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- البطاقة الثانية: صور للموقع -->
+                <div onclick="openSectionModal('sitePhotos')" 
+                     class="panoramic-card group relative rounded-3xl overflow-hidden border-2 border-gold-500/30 hover:border-gold-400 cursor-pointer shadow-2xl gold-glow-hover flex flex-col justify-end min-h-[250px] lg:min-h-full">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80" 
+                         onerror="this.src='https://placehold.co/800x1000/0a1633/d4af37?text=صور+للموقع'"
+                         alt="صور للموقع" 
+                         class="bg-img absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-950 via-royal-950/60 to-royal-900/20 group-hover:via-royal-950/45 transition-all duration-500"></div>
+                    
+                    <div class="absolute top-5 right-5 bg-royal-950/80 backdrop-blur-md border border-gold-500/40 text-gold-400 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot"></i>
+                        أرض الواقع والمخطط
+                    </div>
+
+                    <div class="relative z-10 p-6 sm:p-8 flex flex-col items-start">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center shadow-xl mb-4 group-hover:-translate-y-2 transition-transform duration-300">
+                            <i class="fa-solid fa-map-location-dot text-3xl sm:text-4xl"></i>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white group-hover:text-gold-300 transition-colors mb-2">
+                            صور للموقع
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base font-medium mb-5 max-w-md">
+                            شاهد الموقع الجغرافي المتميز، الواجهات المعمارية، ومراحل الإنشاء على الطبيعة.
+                        </p>
+                        <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 group-hover:bg-gold-500 text-white group-hover:text-royal-950 backdrop-blur-md border border-white/20 group-hover:border-gold-400 font-bold text-sm transition-all">
+                            <span>تصفح صور الموقع</span>
+                            <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- البطاقة الثالثة: صور بعد التنفيذ -->
+                <div onclick="openSectionModal('afterExecution')" 
+                     class="panoramic-card group relative rounded-3xl overflow-hidden border-2 border-gold-500/30 hover:border-gold-400 cursor-pointer shadow-2xl gold-glow-hover flex flex-col justify-end min-h-[250px] lg:min-h-full">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" 
+                         onerror="this.src='https://placehold.co/800x1000/0a1633/d4af37?text=صور+بعد+التنفيذ'"
+                         alt="صور بعد التنفيذ" 
+                         class="bg-img absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-950 via-royal-950/60 to-royal-900/20 group-hover:via-royal-950/45 transition-all duration-500"></div>
+                    
+                    <div class="absolute top-5 right-5 bg-royal-950/80 backdrop-blur-md border border-gold-500/40 text-gold-400 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-gem"></i>
+                        تشطيبات فاخرة
+                    </div>
+
+                    <div class="relative z-10 p-6 sm:p-8 flex flex-col items-start">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center shadow-xl mb-4 group-hover:-translate-y-2 transition-transform duration-300">
+                            <i class="fa-solid fa-wand-magic-sparkles text-3xl sm:text-4xl"></i>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white group-hover:text-gold-300 transition-colors mb-2">
+                            صور بعد التنفيذ
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base font-medium mb-5 max-w-md">
+                            استعرض سابقة أعمالنا وجودة التشطيبات النهائية الفندقية قبل وبعد التسليم.
+                        </p>
+                        <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 group-hover:bg-gold-500 text-white group-hover:text-royal-950 backdrop-blur-md border border-white/20 group-hover:border-gold-400 font-bold text-sm transition-all">
+                            <span>شاهد الأعمال المنفذة</span>
+                            <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- 3. الفوتر (Footer)                                                    -->
+    <!-- ===================================================================== -->
+    <footer class="w-full bg-royal-900/90 border-t border-gold-500/20 py-3.5 px-4 sm:px-8 text-center sm:flex sm:items-center sm:justify-between text-xs sm:text-sm text-slate-400">
+        <p>© 2026 جميع الحقوق محفوظة لشركة <span class="text-gold-400 font-bold">حمزاوي العقارية</span></p>
+        <div class="flex items-center justify-center gap-4 mt-2 sm:mt-0">
+            <button onclick="openChatbot()" class="hover:text-gold-400 transition-colors flex items-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-headset text-gold-400"></i>
+                <span>تواصل مع مستشار المبيعات</span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- 4. نافذة عرض أقسام البطاقات الثلاث (Section Modal)                    -->
+    <!-- ===================================================================== -->
+    <div id="sectionModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-royal-950/85 backdrop-blur-md">
+        <div class="relative w-full max-w-5xl max-h-[90vh] bg-royal-900 border-2 border-gold-500/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-msg">
+            
+            <div class="flex items-center justify-between px-6 py-4 bg-royal-950 border-b border-gold-500/25">
+                <div class="flex items-center gap-3">
+                    <div id="modalIconBox" class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center text-xl shadow">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <div>
+                        <h3 id="modalTitle" class="text-xl sm:text-2xl font-black text-white">عنوان القسم</h3>
+                        <p id="modalSubtitle" class="text-xs sm:text-sm text-gold-400">حمزاوي العقارية</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <!-- زر إضافة داخل النافذة يظهر للأدمن فقط -->
+                    <button id="modalAdminQuickAddBtn" onclick="closeSectionModal(); openAdminAddModal();" class="hidden px-3.5 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold text-xs items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>إضافة هنا</span>
+                    </button>
+                    <button onclick="closeSectionModal()" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center transition-colors cursor-pointer">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="modalBody" class="p-6 overflow-y-auto space-y-6 text-right">
+                <!-- المحتوى الديناميكي -->
+            </div>
+
+            <div class="px-6 py-4 bg-royal-950 border-t border-gold-500/25 flex flex-wrap items-center justify-between gap-3">
+                <span class="text-xs sm:text-sm text-slate-300 font-semibold">هل لديك استفسار حول هذا القسم؟ تواصل معنا مباشرة:</span>
+                <div class="flex flex-wrap items-center gap-2.5" id="modalContactButtons"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 5. نافذة تسجيل الدخول / إنشاء حساب (للعملاء وللأدمن)                 -->
+    <!-- ===================================================================== -->
+    <div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-royal-950/85 backdrop-blur-md">
+        <div class="relative w-full max-w-md bg-royal-900 border-2 border-gold-500/40 rounded-3xl shadow-2xl overflow-hidden animate-msg">
+            
+            <!-- رأس النافذة -->
+            <div class="px-6 py-4 bg-royal-950 border-b border-gold-500/25 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-gold-500 text-royal-950 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 id="authModalTitle" class="text-lg font-black text-white">بوابة الدخول</h3>
+                </div>
+                <button onclick="closeAuthModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- تبويبات التبديل بين (حساب عميل) و (دخول الأدمن) -->
+            <div class="grid grid-cols-2 bg-royal-950/60 p-1.5 mx-6 mt-5 rounded-xl border border-gold-500/20">
+                <button id="tabClientBtn" onclick="switchAuthTab('client')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
+                    <i class="fa-solid fa-user ml-1"></i> حساب العملاء
+                </button>
+                <button id="tabAdminBtn" onclick="switchAuthTab('admin')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
+                    <i class="fa-solid fa-crown ml-1"></i> دخول الأدمن
+                </button>
+            </div>
+
+            <!-- نموذج العميل (تسجيل دخول + إنشاء حساب جديد) -->
+            <div id="clientAuthFormContainer" class="p-6 space-y-4">
+                <div class="flex items-center justify-center gap-4 text-xs font-bold border-b border-white/10 pb-3">
+                    <button type="button" id="clientSubTabLogin" onclick="toggleClientMode('login')" class="text-gold-400 border-b-2 border-gold-400 pb-1 cursor-pointer">تسجيل الدخول</button>
+                    <button type="button" id="clientSubTabRegister" onclick="toggleClientMode('register')" class="text-slate-400 hover:text-white pb-1 cursor-pointer">إنشاء حساب جديد (إيميل)</button>
+                </div>
+
+                <form onsubmit="handleClientAuthSubmit(event)" class="space-y-3.5">
+                    <div id="clientNameField" class="hidden">
+                        <label class="block text-xs font-bold text-slate-300 mb-1">الاسم الكامل</label>
+                        <input type="text" id="clientNameInput" placeholder="أدخل اسمك بالكامل" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">البريد الإلكتروني</label>
+                        <input type="email" id="clientEmailInput" required placeholder="example@email.com" dir="ltr" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm text-right focus:outline-none focus:border-gold-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">كلمة المرور</label>
+                        <input type="password" id="clientPassInput" required placeholder="••••••••" dir="ltr" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm text-right focus:outline-none focus:border-gold-400">
+                    </div>
+                    <button type="submit" id="clientSubmitBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-sm shadow-lg hover:opacity-95 transition-opacity cursor-pointer">
+                        دخول إلى حسابي
+                    </button>
+                </form>
+            </div>
+
+            <!-- نموذج دخول الأدمن المباشر -->
+            <div id="adminAuthFormContainer" class="hidden p-6 space-y-4">
+                <div class="p-3 rounded-xl bg-gold-500/10 border border-gold-500/30 text-xs text-gold-300 leading-relaxed">
+                    <i class="fa-solid fa-circle-info ml-1"></i>
+                    للمعاينة السريعة: اسم المستخدم <strong class="text-white">admin</strong> وكلمة المرور <strong class="text-white">1234</strong> (أو اضغطي دخول مباشر).
+                </div>
+                <form onsubmit="handleAdminLoginSubmit(event)" class="space-y-3.5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">اسم مستخدم الإدارة</label>
+                        <input type="text" id="adminUserInput" value="admin" required class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">كلمة مرور الإدارة</label>
+                        <input type="password" id="adminPassInput" value="1234" required class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-sm shadow-lg hover:opacity-95 transition-opacity cursor-pointer flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>دخول لوحة تحكم الأدمن مباشرة</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 6. نافذة الأدمن الحصرية لإضافة مشاريع وصور جديدة                      -->
+    <!-- ===================================================================== -->
+    <div id="adminAddModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-royal-950/85 backdrop-blur-md">
+        <div class="relative w-full max-w-lg max-h-[90vh] bg-royal-900 border-2 border-gold-500 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-msg">
+            
+            <div class="px-6 py-4 bg-royal-950 border-b border-gold-500/30 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center text-lg shadow">
+                        <i class="fa-solid fa-folder-plus"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-black text-white">إضافة مشروع / صور جديدة</h3>
+                        <p class="text-[11px] text-gold-400">صلاحية حصرية للأدمن فقط — تُنشر فوراً بالموقع</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminAddModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form onsubmit="handleAdminPublishContent(event)" class="p-6 overflow-y-auto space-y-4">
+                
+                <!-- اختيار القسم المراد الإضافة إليه -->
+                <div>
+                    <label class="block text-xs font-bold text-gold-400 mb-1.5">اختر القسم المراد الإضافة فيه:</label>
+                    <select id="adminTargetSection" onchange="toggleAdminFormFields()" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/40 text-white text-sm font-bold focus:outline-none focus:border-gold-400">
+                        <option value="sitePhotos">📸 صور للموقع (أرض المشروع والمخطط)</option>
+                        <option value="afterExecution">✨ صور بعد التنفيذ (التشطيبات النهائية)</option>
+                        <option value="units">🏢 الوحدات المتاحة (إضافة وحدة/مشروع للبوت)</option>
+                        <option value="installments">💳 أنظمة التقسيط (إضافة نظام سداد جديد)</option>
+                    </select>
+                </div>
+
+                <!-- عنوان المشروع أو الصورة أو النظام -->
+                <div>
+                    <label id="adminTitleLabel" class="block text-xs font-bold text-slate-300 mb-1">اسم المشروع / وصف الصورة:</label>
+                    <input type="text" id="adminItemTitle" required placeholder="مثال: مشروع حمزاوي بلازا - الواجهة الرئيسية" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                </div>
+
+                <!-- حقل التفاصيل الإضافية (يظهر للوحدات والتقسيط) -->
+                <div id="adminExtraDetailsField" class="hidden space-y-3">
+                    <div>
+                        <label id="adminSubLabel" class="block text-xs font-bold text-slate-300 mb-1">مدة التقسيط / المساحة:</label>
+                        <input type="text" id="adminItemSub" placeholder="مثال: تقسيط حتى 9 سنوات" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">التفاصيل الكاملة:</label>
+                        <textarea id="adminItemDesc" rows="2" placeholder="اكتب تفاصيل العرض أو مواصفات الوحدة..." class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400"></textarea>
+                    </div>
+                </div>
+
+                <!-- حقل رفع الصورة من الجهاز أو وضع رابط (يظهر لأقسام الصور) -->
+                <div id="adminImageUploadField" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">رفع صورة من جهازك / هاتفك:</label>
+                        <label class="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-gold-500/40 hover:border-gold-400 rounded-2xl bg-royal-950/60 cursor-pointer transition-colors">
+                            <i class="fa-solid fa-cloud-arrow-up text-2xl text-gold-400 mb-1"></i>
+                            <span class="text-xs text-slate-300 font-semibold">اضغط لاختيار صورة من الاستوديو</span>
+                            <input type="file" id="adminFileInput" accept="image/*" onchange="previewAdminFile(event)" class="hidden">
+                        </label>
+                    </div>
+                    <div id="adminImagePreviewBox" class="hidden relative rounded-xl overflow-hidden border border-gold-500/40 h-36">
+                        <img id="adminImagePreview" src="" alt="معاينة" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 mb-1">أو ضع رابط صورة مباشر (اختياري):</label>
+                        <input type="url" id="adminImageUrlInput" placeholder="https://..." dir="ltr" class="w-full px-3 py-2 rounded-xl bg-royal-950 border border-gold-500/20 text-white text-xs text-right focus:outline-none focus:border-gold-400">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-sm shadow-lg hover:opacity-95 transition-opacity cursor-pointer flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>نشر الآن في الموقع</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 7. البوت العقاري الذكي (المساعد الافتراضي لحمزاوي العقارية)            -->
+    <!-- ===================================================================== -->
+    <button id="chatToggleBtn" onclick="toggleChatbot()" 
+            class="fixed bottom-5 right-5 z-40 flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-extrabold shadow-2xl bot-pulse hover:scale-105 transition-transform cursor-pointer">
+        <div class="relative">
+            <i class="fa-solid fa-robot text-2xl"></i>
+            <span class="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 border-2 border-royal-950 rounded-full"></span>
+        </div>
+        <span class="hidden sm:inline text-sm">مساعد حمزاوي الذكي</span>
+    </button>
+
+    <div id="chatbotWindow" class="fixed bottom-20 right-4 left-4 sm:left-auto sm:right-6 z-50 sm:w-[410px] max-h-[80vh] bg-royal-900 border-2 border-gold-500/50 rounded-3xl shadow-2xl hidden flex-col overflow-hidden animate-msg">
+        
+        <div class="bg-gradient-to-r from-royal-950 via-royal-800 to-royal-950 p-4 border-b border-gold-500/30 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center shadow-md">
+                    <i class="fa-solid fa-robot text-xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-black text-white text-base flex items-center gap-2">
+                        مستشار حمزاوي العقاري
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+                    </h4>
+                    <p class="text-xs text-gold-400 font-medium">متاح الآن للرد على استفساراتك</p>
+                </div>
+            </div>
+            <button onclick="closeChatbot()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <div id="chatMessages" class="p-4 h-[330px] sm:h-[360px] overflow-y-auto space-y-3.5 bg-royal-950/60"></div>
+
+        <div class="px-3 py-2.5 bg-royal-900 border-t border-gold-500/20 flex items-center gap-2 overflow-x-auto">
+            <button onclick="handleQuickReply('units')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
+                🏢 الوحدات المتاحة
+            </button>
+            <button onclick="handleQuickReply('areas')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
+                📐 المساحات المتوفرة
+            </button>
+            <button onclick="handleQuickReply('installments')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
+                💳 أنظمة السداد
+            </button>
+            <button onclick="handleQuickReply('contact')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
+                📞 أرقام التواصل
+            </button>
+        </div>
+
+        <form onsubmit="sendUserMessage(event)" class="p-3 bg-royal-950 border-t border-gold-500/25 flex items-center gap-2">
+            <input type="text" id="chatInput" placeholder="اكتب سؤالك عن الوحدات أو المساحات..." 
+                   class="flex-grow bg-royal-900 text-white placeholder-slate-400 text-sm px-4 py-2.5 rounded-xl border border-gold-500/30 focus:outline-none focus:border-gold-400">
+            <button type="submit" class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center hover:opacity-95 transition-opacity shrink-0 cursor-pointer">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- إشعار منبثق (Toast Notification) -->
+    <div id="toastNotification" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 hidden items-center gap-2 px-5 py-3 rounded-2xl bg-emerald-600 text-white font-bold text-sm shadow-2xl">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastText">تم بنجاح!</span>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 8. كود الجافاسكريبت الشامل                                            -->
+    <!-- ===================================================================== -->
+    <script>
+        /**
+         * ====================================================================
+         * قاعدة بيانات موقع حمزاوي العقارية (HAMZAWY_DATA)
+         * قابلة للتعديل بسهولة من الكود أو مباشرة من لوحة تحكم الأدمن في الموقع
+         * ====================================================================
+         */
+        const HAMZAWY_DATA = {
+            adminCredentials: {
+                username: "admin",
+                password: "1234"
+            },
+            contact: {
+                salesPhone: "01000000000",
+                salesPhoneDisplay: "0100 000 0000",
+                whatsappNumber: "201000000000",
+                whatsappDisplay: "0100 000 0000",
+                facebookUrl: "https://www.facebook.com",
+                facebookName: "صفحة حمزاوي العقارية الرسمية"
+            },
+            unitsInfo: {
+                title: "الوحدات المتاحة حالياً في مشاريع حمزاوي العقارية",
+                description: "نوفر باقة متنوعة من الوحدات السكنية والتجارية المصممة بأعلى معايير الفخامة:",
+                items: [
+                    { name: "شقق سكنية فاخرة", details: "غرفتين و3 غرف نوم بتصميمات عصرية وإطلالات مفتوحة." },
+                    { name: "وحدات دوبلكس (Duplex)", details: "بحديقة خاصة ومدخل مستقل لعشاق الخصوصية." },
+                    { name: "بنتهاوس (Penthouse)", details: "مع روف خاص وإطلالة بانورامية ساحرة." },
+                    { name: "فيلات مستقلة وتوين هاوس", details: "مساحات رحبة وتشطيبات خارجية فاخرة." }
+                ]
+            },
+            areasInfo: {
+                title: "المساحات المتوفرة والمخططات الهندسية",
+                description: "تتنوع المساحات لدينا لتناسب كافة احتياجات الأسرة والاستثمار:",
+                items: [
+                    { range: "من 120 م² إلى 155 م²", type: "شقق سكنية (غرفتين / 3 غرف)" },
+                    { range: "من 165 م² إلى 220 م²", type: "شقق كبيرة وريسبشن واسع" },
+                    { range: "من 240 م² إلى 320 م²", type: "دوبلكس بحديقة & بنتهاوس بروف" },
+                    { range: "من 350 م² إلى 450 م²", type: "فيلات مستقلة وتوين هاوس" }
+                ]
+            },
+            installments: {
+                title: "أنظمة التقسيط والسداد",
+                subtitle: "خطط مرنة تناسب ميزانيتك بدون أي فوائد بنكية",
+                icon: "fa-hand-holding-dollar",
+                intro: "في شركة حمزاوي العقارية، نحرص على تقديم أسهل أنظمة السداد وأطول فترات تقسيط لتملك وحدتك بكل راحة وأمان.",
+                plans: [
+                    {
+                        badge: "النظام الأول (الأكثر طلباً)",
+                        title: "مقدم 10% فقط",
+                        duration: "تقسيط حتى 7 سنوات",
+                        details: "دفعة تعاقد 10% والباقي أقساط متساوية ربع سنوية بدون فوائد."
+                    },
+                    {
+                        badge: "النظام الثاني",
+                        title: "مقدم 15% + خصم خاص",
+                        duration: "تقسيط حتى 8 سنوات",
+                        details: "احصل على خصم فوري عند التعاقد مع أطول فترة سداد تصل إلى 8 سنوات."
+                    },
+                    {
+                        badge: "النظام الثالث (استلام فوري)",
+                        title: "مقدم 25% واستلم فوراً",
+                        duration: "تقسيط الباقي على 5 سنوات",
+                        details: "مخصص للوحدات الجاهزة للاستلام الفوري والمعاينة على أرض الواقع."
+                    }
+                ],
+                note: "* خصم خاص ومميز جداً للدفع الكاش — تواصل مع إدارة المبيعات لمعرفة تفاصيل العروض الحالية."
+            },
+            sitePhotos: {
+                title: "صور للموقع وأرض المشروع",
+                subtitle: "معاينة حية للموقع الجغرافي والمخطط العام",
+                icon: "fa-map-location-dot",
+                intro: "يتميز موقع المشروع بالقرب من المحاور الرئيسية والخدمات الحيوية. استعرض صور الموقع والمخططات أدناه:",
+                gallery: [
+                    {
+                        url: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80",
+                        caption: "صورة 1: واجهة الموقع الرئيسية والمداخل"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80",
+                        caption: "صورة 2: المخطط الهندسي وتوزيع المساحات"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
+                        caption: "صورة 3: الإطلالة العامة والشوارع المحيطة"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1590274853856-f22d5ee3d228?auto=format&fit=crop&w=900&q=80",
+                        caption: "صورة 4: الأعمال الإنشائية الجارية في الموقع"
+                    }
+                ]
+            },
+            afterExecution: {
+                title: "صور بعد التنفيذ والتشطيب النهائي",
+                subtitle: "جودة التنفيذ الفاخرة من سابقة أعمال حمزاوي العقارية",
+                icon: "fa-wand-magic-sparkles",
+                intro: "نلتزم بتسليم وحداتنا بأرقى الخامات والتشطيبات العصرية التي تجمع بين الفخامة والعملية. شاهد نماذج حية بعد التنفيذ:",
+                gallery: [
+                    {
+                        url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+                        caption: "تشطيب الواجهات الخارجية والمداخل الرخامية"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+                        caption: "التشطيب الداخلي للريسبشن والإضاءات المخفية"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80",
+                        caption: "تصميمات المطابخ والغرف بعد التسليم"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&q=80",
+                        caption: "اللاندسكيب والمساحات الخضراء بعد التنفيذ"
+                    }
+                ]
+            }
+        };
+
+        /* ==================================================================== */
+        /* حالة المستخدمين والصلاحيات (زائر / عميل / أدمن)                      */
+        /* ==================================================================== */
+        let currentUser = null; // { role: 'client' | 'admin', name: string, email?: string }
+        let clientAuthMode = 'login'; // 'login' | 'register'
+        let uploadedImageDataUrl = '';
+        let currentOpenSectionKey = null;
+
+        // تحديث أزرار الهيدر وشريط الأدمن حسب حالة الدخول
+        function renderAuthUI() {
+            const controls = document.getElementById('authHeaderControls');
+            const adminBanner = document.getElementById('adminBanner');
+            const modalQuickAdd = document.getElementById('modalAdminQuickAddBtn');
+
+            if (!currentUser) {
+                // زائر غير مسجل
+                adminBanner.classList.add('hidden');
+                if (modalQuickAdd) modalQuickAdd.classList.add('hidden');
+                controls.innerHTML = `
+                    <button onclick="openAuthModal('client')" 
+                            class="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs sm:text-sm font-bold transition-colors cursor-pointer">
+                        <i class="fa-solid fa-user text-gold-400"></i>
+                        <span>دخول العملاء</span>
+                    </button>
+                    <button onclick="openAuthModal('admin')" 
+                            class="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-gold-500/20 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/50 text-xs sm:text-sm font-extrabold transition-colors cursor-pointer">
+                        <i class="fa-solid fa-crown"></i>
+                        <span>الأدمن</span>
+                    </button>
+                `;
+            } else if (currentUser.role === 'client') {
+                // عميل مسجل بحسابه (لا يرى أيقونة الإضافة الخاصة بالأدمن)
+                adminBanner.classList.add('hidden');
+                if (modalQuickAdd) modalQuickAdd.classList.add('hidden');
+                controls.innerHTML = `
+                    <div class="flex items-center gap-2 bg-royal-800 border border-gold-500/30 px-3 py-1.5 rounded-xl">
+                        <i class="fa-solid fa-circle-user text-gold-400 text-base"></i>
+                        <span class="text-xs font-bold text-white max-w-[110px] truncate">${escapeHTML(currentUser.name)}</span>
+                        <button onclick="logoutUser()" title="تسجيل الخروج" class="text-red-400 hover:text-red-300 text-xs mr-1 cursor-pointer">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </button>
+                    </div>
+                `;
+            } else if (currentUser.role === 'admin') {
+                // الأدمن مسجل الدخول: تظهر له علامة/زر (+) الحصري لإضافة المشاريع والصور
+                adminBanner.classList.remove('hidden');
+                if (modalQuickAdd) {
+                    modalQuickAdd.classList.remove('hidden');
+                    modalQuickAdd.classList.add('flex');
+                }
+                controls.innerHTML = `
+                    <button onclick="openAdminAddModal()" 
+                            title="إضافة مشروع أو صور جديدة (للأدمن فقط)"
+                            class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-xs sm:text-sm shadow-lg hover:scale-105 transition-transform cursor-pointer">
+                        <i class="fa-solid fa-circle-plus text-base"></i>
+                        <span>إضافة مشروع / صور</span>
+                    </button>
+                    <button onclick="logoutUser()" title="خروج الأدمن" class="w-9 h-9 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/40 flex items-center justify-center transition-colors cursor-pointer">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                `;
+            }
+        }
+
+        function openAuthModal(tab = 'client') {
+            document.getElementById('authModal').classList.remove('hidden');
+            document.getElementById('authModal').classList.add('flex');
+            switchAuthTab(tab);
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.add('hidden');
+            document.getElementById('authModal').classList.remove('flex');
+        }
+
+        function switchAuthTab(tab) {
+            const clientContainer = document.getElementById('clientAuthFormContainer');
+            const adminContainer = document.getElementById('adminAuthFormContainer');
+            const tabClientBtn = document.getElementById('tabClientBtn');
+            const tabAdminBtn = document.getElementById('tabAdminBtn');
+            const title = document.getElementById('authModalTitle');
+
+            if (tab === 'client') {
+                clientContainer.classList.remove('hidden');
+                adminContainer.classList.add('hidden');
+                tabClientBtn.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold bg-gold-500 text-royal-950 shadow cursor-pointer";
+                tabAdminBtn.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold text-slate-300 hover:text-white cursor-pointer";
+                title.textContent = "بوابة العملاء";
+            } else {
+                clientContainer.classList.add('hidden');
+                adminContainer.classList.remove('hidden');
+                tabAdminBtn.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold bg-gold-500 text-royal-950 shadow cursor-pointer";
+                tabClientBtn.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold text-slate-300 hover:text-white cursor-pointer";
+                title.textContent = "دخول الإدارة (Admin)";
+            }
+        }
+
+        function toggleClientMode(mode) {
+            clientAuthMode = mode;
+            const nameField = document.getElementById('clientNameField');
+            const submitBtn = document.getElementById('clientSubmitBtn');
+            const loginTab = document.getElementById('clientSubTabLogin');
+            const regTab = document.getElementById('clientSubTabRegister');
+
+            if (mode === 'register') {
+                nameField.classList.remove('hidden');
+                document.getElementById('clientNameInput').required = true;
+                submitBtn.textContent = "إنشاء الحساب والدخول";
+                regTab.className = "text-gold-400 border-b-2 border-gold-400 pb-1 cursor-pointer";
+                loginTab.className = "text-slate-400 hover:text-white pb-1 cursor-pointer";
+            } else {
+                nameField.classList.add('hidden');
+                document.getElementById('clientNameInput').required = false;
+                submitBtn.textContent = "دخول إلى حسابي";
+                loginTab.className = "text-gold-400 border-b-2 border-gold-400 pb-1 cursor-pointer";
+                regTab.className = "text-slate-400 hover:text-white pb-1 cursor-pointer";
+            }
+        }
+
+        function handleClientAuthSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('clientEmailInput').value.trim();
+            const nameInput = document.getElementById('clientNameInput').value.trim();
+            const displayName = (clientAuthMode === 'register' && nameInput) ? nameInput : email.split('@')[0];
+
+            currentUser = {
+                role: 'client',
+                name: displayName,
+                email: email
+            };
+
+            closeAuthModal();
+            renderAuthUI();
+            showToast(clientAuthMode === 'register' ? `أهلاً بك ${displayName}! تم إنشاء حسابك بنجاح` : `مرحباً بعودتك ${displayName}`);
+        }
+
+        function handleAdminLoginSubmit(e) {
+            e.preventDefault();
+            const user = document.getElementById('adminUserInput').value.trim();
+            const pass = document.getElementById('adminPassInput').value.trim();
+
+            if (user === HAMZAWY_DATA.adminCredentials.username && pass === HAMZAWY_DATA.adminCredentials.password) {
+                currentUser = {
+                    role: 'admin',
+                    name: 'المدير العام'
+                };
+                closeAuthModal();
+                renderAuthUI();
+                showToast("تم تسجيل دخول الأدمن بنجاح — أيقونة الإضافة متاحة الآن");
+            } else {
+                showToast("بيانات الإدارة غير صحيحة (جرب admin / 1234)", true);
+            }
+        }
+
+        function logoutUser() {
+            currentUser = null;
+            renderAuthUI();
+            showToast("تم تسجيل الخروج بنجاح");
+        }
+
+        /* ==================================================================== */
+        /* نافذة الأدمن لإضافة مشاريع وصور جديدة                                */
+        /* ==================================================================== */
+        function openAdminAddModal() {
+            if (!currentUser || currentUser.role !== 'admin') return;
+            uploadedImageDataUrl = '';
+            document.getElementById('adminItemTitle').value = '';
+            document.getElementById('adminItemSub').value = '';
+            document.getElementById('adminItemDesc').value = '';
+            document.getElementById('adminImageUrlInput').value = '';
+            document.getElementById('adminImagePreviewBox').classList.add('hidden');
+            
+            if (currentOpenSectionKey) {
+                document.getElementById('adminTargetSection').value = currentOpenSectionKey;
+            }
+            toggleAdminFormFields();
+
+            document.getElementById('adminAddModal').classList.remove('hidden');
+            document.getElementById('adminAddModal').classList.add('flex');
+        }
+
+        function closeAdminAddModal() {
+            document.getElementById('adminAddModal').classList.add('hidden');
+            document.getElementById('adminAddModal').classList.remove('flex');
+        }
+
+        function toggleAdminFormFields() {
+            const target = document.getElementById('adminTargetSection').value;
+            const imgField = document.getElementById('adminImageUploadField');
+            const extraField = document.getElementById('adminExtraDetailsField');
+            const titleLabel = document.getElementById('adminTitleLabel');
+            const subLabel = document.getElementById('adminSubLabel');
+
+            if (target === 'sitePhotos' || target === 'afterExecution') {
+                imgField.classList.remove('hidden');
+                extraField.classList.add('hidden');
+                titleLabel.textContent = "اسم المشروع / عنوان الصورة:";
+            } else if (target === 'units') {
+                imgField.classList.add('hidden');
+                extraField.classList.remove('hidden');
+                titleLabel.textContent = "اسم المشروع أو نوع الوحدة الجديدة:";
+                subLabel.textContent = "المساحات المتوفرة في هذا المشروع:";
+            } else if (target === 'installments') {
+                imgField.classList.add('hidden');
+                extraField.classList.remove('hidden');
+                titleLabel.textContent = "نسبة المقدم (مثال: مقدم 5% فقط):";
+                subLabel.textContent = "مدة التقسيط (مثال: تقسيط حتى 10 سنوات):";
+            }
+        }
+
+        function previewAdminFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                uploadedImageDataUrl = e.target.result;
+                const previewImg = document.getElementById('adminImagePreview');
+                previewImg.src = uploadedImageDataUrl;
+                document.getElementById('adminImagePreviewBox').classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handleAdminPublishContent(e) {
+            e.preventDefault();
+            if (!currentUser || currentUser.role !== 'admin') return;
+
+            const target = document.getElementById('adminTargetSection').value;
+            const title = document.getElementById('adminItemTitle').value.trim();
+            const sub = document.getElementById('adminItemSub').value.trim();
+            const desc = document.getElementById('adminItemDesc').value.trim();
+            const urlInput = document.getElementById('adminImageUrlInput').value.trim();
+
+            if (target === 'sitePhotos' || target === 'afterExecution') {
+                const finalImgUrl = uploadedImageDataUrl || urlInput || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
+                HAMZAWY_DATA[target].gallery.unshift({
+                    url: finalImgUrl,
+                    caption: title
+                });
+                closeAdminAddModal();
+                showToast("تم نشر الصورة الجديدة بنجاح!");
+                openSectionModal(target);
+            } else if (target === 'units') {
+                HAMZAWY_DATA.unitsInfo.items.unshift({
+                    name: title,
+                    details: `${sub ? sub + ' — ' : ''}${desc || 'متاح الآن للحجز والاستفسار.'}`
+                });
+                closeAdminAddModal();
+                showToast("تمت إضافة الوحدة/المشروع الجديد إلى البوت!");
+                triggerBotFromHeader('units');
+            } else if (target === 'installments') {
+                HAMZAWY_DATA.installments.plans.unshift({
+                    badge: "عرض جديد من الإدارة",
+                    title: title,
+                    duration: sub || "تسهيلات مرنة",
+                    details: desc || "بدون فوائد وبأقل مقدم تعاقد."
+                });
+                closeAdminAddModal();
+                showToast("تمت إضافة نظام التقسيط الجديد بنجاح!");
+                openSectionModal('installments');
+            }
+        }
+
+        /* ==================================================================== */
+        /* دوال النوافذ المنبثقة للأقسام الثلاثة                                 */
+        /* ==================================================================== */
+        function openSectionModal(sectionKey) {
+            currentOpenSectionKey = sectionKey;
+            const modal = document.getElementById('sectionModal');
+            const titleEl = document.getElementById('modalTitle');
+            const subtitleEl = document.getElementById('modalSubtitle');
+            const iconBox = document.getElementById('modalIconBox');
+            const bodyEl = document.getElementById('modalBody');
+            const contactBtnsEl = document.getElementById('modalContactButtons');
+            const modalQuickAdd = document.getElementById('modalAdminQuickAddBtn');
+
+            if (currentUser && currentUser.role === 'admin') {
+                modalQuickAdd.classList.remove('hidden');
+                modalQuickAdd.classList.add('flex');
+            } else {
+                modalQuickAdd.classList.add('hidden');
+            }
+
+            const data = HAMZAWY_DATA[sectionKey];
+            if (!data) return;
+
+            titleEl.textContent = data.title;
+            subtitleEl.textContent = data.subtitle;
+            iconBox.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+
+            let htmlContent = `<p class="text-slate-200 text-base sm:text-lg leading-relaxed bg-royal-950/60 p-4 rounded-2xl border border-gold-500/20">${data.intro}</p>`;
+
+            if (sectionKey === 'installments') {
+                htmlContent += `<div class="grid grid-cols-1 md:grid-cols-3 gap-4">`;
+                data.plans.forEach(plan => {
+                    htmlContent += `
+                        <div class="bg-royal-950 border border-gold-500/35 rounded-2xl p-5 flex flex-col justify-between hover:border-gold-400 transition-all shadow-lg">
+                            <div>
+                                <span class="inline-block px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs font-bold mb-3">${escapeHTML(plan.badge)}</span>
+                                <h4 class="text-2xl font-black text-white mb-1">${escapeHTML(plan.title)}</h4>
+                                <p class="text-gold-400 font-bold text-sm mb-3"><i class="fa-regular fa-calendar-check ml-1"></i> ${escapeHTML(plan.duration)}</p>
+                                <p class="text-slate-300 text-sm leading-relaxed">${escapeHTML(plan.details)}</p>
+                            </div>
+                            <button onclick="closeSectionModal(); handleQuickReply('contact');" class="mt-5 w-full py-2.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-extrabold text-sm hover:opacity-90 transition-opacity cursor-pointer">
+                                احجز هذا النظام الآن
+                            </button>
+                        </div>
+                    `;
+                });
+                htmlContent += `</div>`;
+                htmlContent += `<div class="p-4 rounded-2xl bg-emerald-950/50 border border-emerald-500/30 text-emerald-300 text-sm font-bold text-center">${data.note}</div>`;
+            }
+
+            if (sectionKey === 'sitePhotos' || sectionKey === 'afterExecution') {
+                htmlContent += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">`;
+                data.gallery.forEach((item, index) => {
+                    htmlContent += `
+                        <div class="group rounded-2xl overflow-hidden bg-royal-950 border border-gold-500/30 shadow-lg">
+                            <div class="relative h-60 sm:h-64 overflow-hidden">
+                                <img src="${item.url}" 
+                                     onerror="this.src='https://placehold.co/800x500/0a1633/d4af37?text=صورة+${index + 1}'"
+                                     alt="${escapeHTML(item.caption)}" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-3.5 bg-royal-950 border-t border-gold-500/20 flex items-center justify-between">
+                                <span class="text-sm font-bold text-white">${escapeHTML(item.caption)}</span>
+                                <span class="text-xs text-gold-400 font-semibold">#${index + 1}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                htmlContent += `</div>`;
+            }
+
+            bodyEl.innerHTML = htmlContent;
+
+            const c = HAMZAWY_DATA.contact;
+            contactBtnsEl.innerHTML = `
+                <a href="tel:${c.salesPhone}" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-royal-800 hover:bg-gold-500 text-white hover:text-royal-950 border border-gold-500/40 text-xs sm:text-sm font-bold transition-colors">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>المبيعات: ${c.salesPhoneDisplay}</span>
+                </a>
+                <a href="https://wa.me/${c.whatsappNumber}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold transition-colors">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>واتساب</span>
+                </a>
+                <a href="${c.facebookUrl}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition-colors">
+                    <i class="fa-brands fa-facebook text-base"></i>
+                    <span>فيسبوك</span>
+                </a>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeSectionModal() {
+            currentOpenSectionKey = null;
+            const modal = document.getElementById('sectionModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.getElementById('sectionModal').addEventListener('click', function(e) {
+            if (e.target === this) closeSectionModal();
+        });
+
+        /* ==================================================================== */
+        /* دوال البوت العقاري الذكي                                              */
+        /* ==================================================================== */
+        let isBotInitialized = false;
+
+        function openChatbot() {
+            const chatWin = document.getElementById('chatbotWindow');
+            chatWin.classList.remove('hidden');
+            chatWin.classList.add('flex');
+            
+            if (!isBotInitialized) {
+                initializeBot();
+                isBotInitialized = true;
+            }
+            
+            document.getElementById('chatInput').focus();
+        }
+
+        function closeChatbot() {
+            const chatWin = document.getElementById('chatbotWindow');
+            chatWin.classList.add('hidden');
+            chatWin.classList.remove('flex');
+        }
+
+        function toggleChatbot() {
+            const chatWin = document.getElementById('chatbotWindow');
+            if (chatWin.classList.contains('hidden')) {
+                openChatbot();
+            } else {
+                closeChatbot();
+            }
+        }
+
+        function initializeBot() {
+            const messagesEl = document.getElementById('chatMessages');
+            messagesEl.innerHTML = '';
+            addBotMessage("أهلاً بيك في <strong>حمزاوي العقارية</strong> 🏗️<br>أنا مساعدك العقاري الذكي، ممكن أساعدك في:\n\n" +
+                "🏢 <strong>الوحدات المتاحة</strong> — أنواع和单位 وخدماتنا\n" +
+                "📐 <strong>المساحات</strong> — المخططات والمساحات المتوفرة\n" +
+                "💳 <strong>أنظمة التقسيط</strong> — خطط السداد والمرجعية\n" +
+                "📞 <strong>تواصل معنا</strong> — رقم التواصل الاجتماعي والحجوزات\n\n" +
+                "اختيار واحد أو اكتب سؤالك حر!");
+        }
+
+        function addBotMessage(text) {
+            const messagesEl = document.getElementById('chatMessages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'flex justify-start animate-msg';
+            msgDiv.innerHTML = `
+                <div class="max-w-[85%] bg-royal-950 border border-gold-500/25 rounded-2xl rounded-tr-sm p-3.5">
+                    <p class="text-sm text-white leading-relaxed">${text}</p>
+                    <span class="text-[10px] text-slate-500 mt-1 block">حمزاوي بوت 🤖</span>
+                </div>
+            `;
+            messagesEl.appendChild(msgDiv);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const messagesEl = document.getElementById('chatMessages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'flex justify-end animate-msg';
+            msgDiv.innerHTML = `
+                <div class="max-w-[85%] bg-gradient-to-l from-gold-500 to-gold-400 text-royal-950 rounded-2xl rounded-tl-sm p-3.5">
+                    <p class="text-sm font-bold leading-relaxed">${escapeHTML(text)}</p>
+                    <span class="text-[10px] text-royal-800 mt-1 block opacity-75">أنت</span>
+                </div>
+            `;
+            messagesEl.appendChild(msgDiv);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        function sendUserMessage(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            addUserMessage(text);
+            input.value = '';
+
+            // Simulate bot typing delay
+            setTimeout(() => {
+                processBotResponse(text.toLowerCase());
+            }, 600);
+        }
+
+        function processBotResponse(input) {
+            if (input.includes('وحدة') || input.includes('شقه') || input.includes('شقة') || input.includes('دوبلكس') || input.includes('فيلا') || input.includes('penthouse') || input.includes('بنتهاوس')) {
+                showUnitsInfo();
+            } else if (input.includes('مساحه') || input.includes('مساحة') || input.includes('متر') || input.includes('plans') || input.includes('مخطط')) {
+                showAreasInfo();
+            } else if (input.includes('تقسيط') || input.includes('قسط') || input.includes('سداد') || input.includes('مقدم') || input.includes('دفع')) {
+                showInstallmentsInfo();
+            } else if (input.includes('تواصل') || input.includes('رقم') || input.includes('اتصل') || input.includes('واتساب') || input.includes('فيس') || input.includes('contact') || input.includes('phone')) {
+                showContactInfo();
+            } else if (input.includes('سلام') || input.includes('اهلا') || input.includes('مرحبا') || input.includes('Hello') || input.includes('hi')) {
+                addBotMessage("وعليكم السلام ورحمة الله! 👋<br>أهلاً وسهلاً بيك في حمزاوي العقارية. اختار من الخيارات اللي تحت لأي معلومة تحتاجها، أو اسألني أي سؤال.");
+            } else if (input.includes('شكر') || input.includes('تمام') || input.includes('كويس') || input.includes('بردو')) {
+                addBotMessage("العفو يا هندسة! 😊🙏<br>لو محتاجة أي حاجة تانية أنا موجود لمعاونتك. مشكورين إنك اخترت حمزاوي العقارية! ✨");
+            } else {
+                addBotMessage("شكراً لسؤالك! 🌟<br>أنا قادر أساعدك في:\n\n" +
+                    "🏢 <strong>الوحدات المتاحة</strong><br>" +
+                    "📐 <strong>المساحات والمخططات</strong><br>" +
+                    "💳 <strong>أنظمة التقسيط</strong><br>" +
+                    "📞 <strong>أرقام التواصل</strong>\n\n" +
+                    "اختار واحد أو حدّد سؤالك أكتر!");
+            }
+        }
+
+        function showUnitsInfo() {
+            let response = "<strong>🏢 الوحدات المتاحة:</strong><br><br>";
+            HAMZAWY_DATA.unitsInfo.items.forEach(item => {
+                response += `✅ <strong>${item.name}</strong><br><span class="text-slate-300">${item.details}</span><br><br>`;
+            });
+            response += `<span class="text-gold-400 font-bold">💰 أسعار منافسة ومرجعية حسب الوحدة — تواصل معاينة!</span>`;
+            addBotMessage(response);
+        }
+
+        function showAreasInfo() {
+            let response = "<strong>📐 المساحات المتوفرة:</strong><br><br>";
+            HAMZAWY_DATA.areasInfo.items.forEach(item => {
+                response += `📏 <strong>${item.range}</strong><br><span class="text-slate-300">${item.type}</span><br><br>`;
+            });
+            response += `<span class="text-gold-400 font-bold">📐 مخططات جاهزة — احجز موعد المعاينة!</span>`;
+            addBotMessage(response);
+        }
+
+        function showInstallmentsInfo() {
+            let response = "<strong>💳 أنظمة التقسيط:</strong><br><br>";
+            HAMZAWY_DATA.installments.plans.forEach((plan, i) => {
+                response += `<strong>${i+1}. ${plan.title}</strong><br>`;
+                response += `<span class="text-gold-400 text-xs">⏱️ ${plan.duration}</span><br>`;
+                response += `<span class="text-slate-300 text-sm">${plan.details}</span><br><br>`;
+            });
+            response += `<div class="p-2.5 rounded-xl bg-emerald-950/50 border border-emerald-500/30 text-emerald-300 text-xs font-bold">${HAMZAWY_DATA.installments.note}</div>`;
+            addBotMessage(response);
+        }
+
+        function showContactInfo() {
+            const c = HAMZAWY_DATA.contact;
+            let response = "<strong>📞 معلومات التواصل:</strong><br><br>";
+            response += `📱 <strong>خط المبيعات:</strong> ${c.salesPhoneDisplay}<br><br>`;
+            response += `💬 <strong>واتساب:</strong> <a href="https://wa.me/${c.whatsappNumber}" class="text-emerald-400 underline" target="_blank">${c.whatsappDisplay}</a><br><br>`;
+            response += `📘 <strong>فيسبوك:</strong> <a href="${c.facebookUrl}" class="text-blue-400 underline" target="_blank">${c.facebookName}</a><br><br>`;
+            response += `<span class="text-gold-400 font-bold">🕐 مواعيد العمل: السبت - الخميس | 9 ص - 6 م</span>`;
+            addBotMessage(response);
+        }
+
+        function handleQuickReply(type) {
+            const chatWin = document.getElementById('chatbotWindow');
+            if (chatWin.classList.contains('hidden')) {
+                openChatbot();
+            }
+
+            switch(type) {
+                case 'units':
+                    addUserMessage('🏢 الوحدات المتاحة');
+                    setTimeout(() => showUnitsInfo(), 400);
+                    break;
+                case 'areas':
+                    addUserMessage('📐 المساحات المتوفرة');
+                    setTimeout(() => showAreasInfo(), 400);
+                    break;
+                case 'installments':
+                    addUserMessage('💳 أنظمة التقسيط');
+                    setTimeout(() => showInstallmentsInfo(), 400);
+                    break;
+                case 'contact':
+                    addUserMessage('📞 أرقام التواصل');
+                    setTimeout(() => showContactInfo(), 400);
+                    break;
+            }
+        }
+
+        function triggerBotFromHeader(section) {
+            if (!isBotInitialized) {
+                initializeBot();
+                isBotInitialized = true;
+            }
+            openChatbot();
+
+            setTimeout(() => {
+                switch(section) {
+                    case 'units':
+                        addUserMessage('🏢 عرض الوحدات');
+                        setTimeout(() => showUnitsInfo(), 400);
+                        break;
+                    case 'areas':
+                        addUserMessage('📐 عرض المساحات');
+                        setTimeout(() => showAreasInfo(), 400);
+                        break;
+                }
+            }, 500);
+        }
+
+        /* ==================================================================== */
+        /* أدوات مساعدة                                                         */
+        /* ==================================================================== */
+        function escapeHTML(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toastNotification');
+            const textEl = document.getElementById('toastText');
+            
+            textEl.textContent = message;
+            toast.className = `fixed top-20 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-sm shadow-2xl ${
+                isError ? 'bg-red-600 text-white' : 'bg-emerald-600 text-white'
+            }`;
+            toast.querySelector('i').className = isError ? 'fa-solid fa-circle-exclamation' : 'fa-solid fa-circle-check';
+            
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+
+        /* ==================================================================== */
+        /* إغلاق النوافذ بالكبسولة ESC                                         */
+        /* ==================================================================== */
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeSectionModal();
+                closeAuthModal();
+                closeAdminAddModal();
+                closeChatbot();
+            }
+        });
+
+        /* ==================================================================== */
+        /* التهيئة الأولية عند تحميل الصفحة                                   */
+        /* ==================================================================== */
+        window.addEventListener('DOMContentLoaded', () => {
+            renderAuthUI();
+        });
+    </script>
+</body>
+</html>
