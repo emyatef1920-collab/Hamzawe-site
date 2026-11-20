@@ -97,7 +97,7 @@
     <!-- ===================================================================== -->
     <!-- بوابة الدخول الإجبارية عند فتح الرابط (للعميل أو الأدمن)            -->
     <!-- ===================================================================== -->
-    <div id="entryGateScreen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-royal-950/95 backdrop-blur-lg overflow-y-auto">
+    <div id="entryGateScreen" class="fixed inset-0 z-40 flex items-center justify-center p-4 bg-royal-950/95 backdrop-blur-lg overflow-y-auto">
         <div class="w-full max-w-md bg-royal-900 border-2 border-gold-500/50 rounded-3xl shadow-2xl overflow-hidden animate-msg my-auto">
             
             <div class="px-6 py-5 bg-royal-950 border-b border-gold-500/30 text-center">
@@ -110,10 +110,10 @@
             </div>
 
             <div class="grid grid-cols-2 bg-royal-950/70 p-1.5 mx-6 mt-5 rounded-xl border border-gold-500/25">
-                <button id="gateTabClient" onclick="switchGateTab('client')" class="py-2.5 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
+                <button id="gateTabClient" type="button" onclick="switchGateTab('client')" class="py-2.5 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
                     <i class="fa-solid fa-user ml-1"></i> دخول العملاء
                 </button>
-                <button id="gateTabAdmin" onclick="switchGateTab('admin')" class="py-2.5 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
+                <button id="gateTabAdmin" type="button" onclick="switchGateTab('admin')" class="py-2.5 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
                     <i class="fa-solid fa-shield-halved ml-1"></i> دخول الأدمن
                 </button>
             </div>
@@ -193,7 +193,7 @@
     <div id="mainSiteWrapper" class="hidden flex-col justify-between min-h-screen">
 
         <!-- 1. الهيدر العلوي (Header) -->
-        <header class="sticky top-0 z-40 w-full bg-royal-950/95 backdrop-blur-md border-b border-gold-500/25 shadow-lg">
+        <header class="sticky top-0 z-30 w-full bg-royal-950/95 backdrop-blur-md border-b border-gold-500/25 shadow-lg">
             <div class="w-full px-4 sm:px-8 lg:px-10 py-3 flex flex-wrap items-center justify-between gap-3">
                 
                 <a href="#" class="flex items-center gap-3 group">
@@ -211,7 +211,7 @@
                 </a>
 
                 <div class="flex flex-wrap items-center gap-2 sm:gap-3">
-                    <button onclick="openSectionModal('unitsInfo')" 
+                    <button type="button" onclick="openSectionModal('unitsInfo')" 
                             class="group flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-royal-800/90 hover:bg-gradient-to-r hover:from-gold-500 hover:to-gold-400 text-white hover:text-royal-950 border border-gold-500/40 transition-all duration-300 shadow-md gold-glow-hover cursor-pointer">
                         <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gold-500/20 group-hover:bg-royal-950/15 flex items-center justify-center text-gold-400 group-hover:text-royal-950 transition-colors">
                             <i class="fa-solid fa-building text-sm sm:text-base"></i>
@@ -222,7 +222,7 @@
                         </div>
                     </button>
 
-                    <button onclick="openSectionModal('areasInfo')" 
+                    <button type="button" onclick="openSectionModal('areasInfo')" 
                             class="group flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-royal-800/90 hover:bg-gradient-to-r hover:from-gold-500 hover:to-gold-400 text-white hover:text-royal-950 border border-gold-500/40 transition-all duration-300 shadow-md gold-glow-hover cursor-pointer">
                         <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gold-500/20 group-hover:bg-royal-950/15 flex items-center justify-center text-gold-400 group-hover:text-royal-950 transition-colors">
                             <i class="fa-solid fa-ruler-combined text-sm sm:text-base"></i>
@@ -240,31 +240,27 @@
             </div>
         </header>
 
-        <!-- شريط تنبيه وتحكم سريع خاص بالأدمن -->
+        <!-- شريط تنبيه وتحكم سريع خاص بالأدمن (بدون زر إضافة خارجي) -->
         <div id="adminBanner" class="hidden w-full bg-gradient-to-l from-gold-600 via-gold-500 to-gold-400 text-royal-950 px-4 sm:px-8 py-2.5 shadow-md">
             <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-2 font-extrabold text-xs sm:text-sm">
                     <i class="fa-solid fa-shield-halved text-base"></i>
-                    <span>وضع الإدارة (Admin): أي إضافة أو تعديل أو حذف يُحفظ في السحابة ويظهر لكل الأجهزة فوراً.</span>
+                    <span>وضع الإدارة (Admin): ادخل أي قسم وأضف من داخله مباشرة، ثم اضغط حفظ جميع التغييرات.</span>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
-                    <button onclick="commitAllAdminChanges()" class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white hover:bg-emerald-500 font-black text-xs flex items-center gap-1.5 shadow cursor-pointer">
+                    <button type="button" onclick="commitAllAdminChanges()" class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white hover:bg-emerald-500 font-black text-xs flex items-center gap-1.5 shadow cursor-pointer">
                         <i class="fa-solid fa-check-double"></i>
                         <span>حفظ جميع التغييرات</span>
                     </button>
-                    <button onclick="openAdminDashboardModal('names')" class="px-3 py-1.5 rounded-lg bg-royal-950 text-gold-400 hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
+                    <button type="button" onclick="openAdminDashboardModal('names')" class="px-3 py-1.5 rounded-lg bg-royal-950 text-gold-400 hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
                         <i class="fa-solid fa-font"></i>
                         <span>تعديل الأسماء والنصوص</span>
                     </button>
-                    <button onclick="openAdminDashboardModal('clients')" class="px-3 py-1.5 rounded-lg bg-royal-950 text-gold-400 hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
+                    <button type="button" onclick="openAdminDashboardModal('clients')" class="px-3 py-1.5 rounded-lg bg-royal-950 text-gold-400 hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
                         <i class="fa-solid fa-users"></i>
                         <span>بيانات العملاء (<span id="bannerClientsCount">0</span>)</span>
                     </button>
-                    <button onclick="openAdminItemModal('add')" class="px-3 py-1.5 rounded-lg bg-royal-950 text-emerald-400 hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <span>إضافة عنصر جديد</span>
-                    </button>
-                    <button onclick="openAdminDashboardModal('security')" class="px-3 py-1.5 rounded-lg bg-royal-950 text-white hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
+                    <button type="button" onclick="openAdminDashboardModal('security')" class="px-3 py-1.5 rounded-lg bg-royal-950 text-white hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
                         <i class="fa-solid fa-key"></i>
                         <span>تغيير الباسورد</span>
                     </button>
@@ -305,10 +301,10 @@
                             تسهيلات حصرية
                         </div>
 
-                        <button onclick="event.stopPropagation(); openSectionModal('installments')" 
-                                class="admin-only-control hidden absolute top-5 left-5 z-20 px-3 py-1.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs shadow-lg items-center gap-1.5 hover:bg-gold-400">
+                        <button type="button" onclick="event.stopPropagation(); openSectionModal('installments')" 
+                                class="admin-only-control hidden absolute top-5 left-5 z-20 px-3 py-1.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs shadow-lg items-center gap-1.5 hover:bg-gold-400 cursor-pointer">
                             <i class="fa-solid fa-pen-to-square"></i>
-                            <span>إدارة القسم</span>
+                            <span>فتح القسم</span>
                         </button>
 
                         <div class="relative z-10 p-6 sm:p-8 flex flex-col items-start">
@@ -342,10 +338,10 @@
                             أرض الواقع والمخطط
                         </div>
 
-                        <button onclick="event.stopPropagation(); openSectionModal('sitePhotos')" 
-                                class="admin-only-control hidden absolute top-5 left-5 z-20 px-3 py-1.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs shadow-lg items-center gap-1.5 hover:bg-gold-400">
+                        <button type="button" onclick="event.stopPropagation(); openSectionModal('sitePhotos')" 
+                                class="admin-only-control hidden absolute top-5 left-5 z-20 px-3 py-1.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs shadow-lg items-center gap-1.5 hover:bg-gold-400 cursor-pointer">
                             <i class="fa-solid fa-pen-to-square"></i>
-                            <span>إدارة القسم</span>
+                            <span>فتح القسم</span>
                         </button>
 
                         <div class="relative z-10 p-6 sm:p-8 flex flex-col items-start">
@@ -379,10 +375,10 @@
                             تشطيبات فاخرة
                         </div>
 
-                        <button onclick="event.stopPropagation(); openSectionModal('afterExecution')" 
-                                class="admin-only-control hidden absolute top-5 left-5 z-20 px-3 py-1.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs shadow-lg items-center gap-1.5 hover:bg-gold-400">
+                        <button type="button" onclick="event.stopPropagation(); openSectionModal('afterExecution')" 
+                                class="admin-only-control hidden absolute top-5 left-5 z-20 px-3 py-1.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs shadow-lg items-center gap-1.5 hover:bg-gold-400 cursor-pointer">
                             <i class="fa-solid fa-pen-to-square"></i>
-                            <span>إدارة القسم</span>
+                            <span>فتح القسم</span>
                         </button>
 
                         <div class="relative z-10 p-6 sm:p-8 flex flex-col items-start">
@@ -421,7 +417,7 @@
                     <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
                     <span>واتساب المبيعات</span>
                 </a>
-                <button onclick="openChatbot()" class="hover:text-gold-400 transition-colors flex items-center gap-1.5 cursor-pointer">
+                <button type="button" onclick="openChatbot()" class="hover:text-gold-400 transition-colors flex items-center gap-1.5 cursor-pointer">
                     <i class="fa-solid fa-headset text-gold-400"></i>
                     <span>المساعد الذكي</span>
                 </button>
@@ -429,8 +425,8 @@
         </footer>
 
         <!-- زر البوت العائم -->
-        <button id="chatToggleBtn" onclick="toggleChatbot()" 
-                class="fixed bottom-5 right-5 z-40 flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-extrabold shadow-2xl bot-pulse hover:scale-105 transition-transform cursor-pointer">
+        <button id="chatToggleBtn" type="button" onclick="toggleChatbot()" 
+                class="fixed bottom-5 right-5 z-30 flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-extrabold shadow-2xl bot-pulse hover:scale-105 transition-transform cursor-pointer">
             <div class="relative">
                 <i class="fa-solid fa-robot text-2xl"></i>
                 <span class="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 border-2 border-royal-950 rounded-full"></span>
@@ -441,7 +437,7 @@
     </div>
 
     <!-- ===================================================================== -->
-    <!-- 4. نافذة عرض الأقسام                                                  -->
+    <!-- 4. نافذة عرض الأقسام (مع زر الإضافة الداخلي لكل قسم)               -->
     <!-- ===================================================================== -->
     <div id="sectionModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-royal-950/85 backdrop-blur-md">
         <div class="relative w-full max-w-5xl max-h-[90vh] bg-royal-900 border-2 border-gold-500/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-msg">
@@ -457,15 +453,15 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
-                    <button id="modalAdminSaveAllBtn" onclick="commitAllAdminChanges()" class="hidden px-3.5 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs items-center gap-1.5 cursor-pointer shadow">
+                    <button id="modalAdminSaveAllBtn" type="button" onclick="commitAllAdminChanges()" class="hidden px-3.5 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs items-center gap-1.5 cursor-pointer shadow">
                         <i class="fa-solid fa-check-double"></i>
                         <span>حفظ جميع التغييرات</span>
                     </button>
-                    <button id="modalAdminQuickAddBtn" onclick="openAdminItemModal('add', currentOpenSectionKey)" class="hidden px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-royal-950 font-extrabold text-xs items-center gap-1.5 cursor-pointer shadow">
+                    <button id="modalAdminQuickAddBtn" type="button" onclick="triggerAddInsideCurrentSection()" class="hidden px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-royal-950 font-extrabold text-xs items-center gap-1.5 cursor-pointer shadow">
                         <i class="fa-solid fa-plus"></i>
                         <span>إضافة في هذا القسم</span>
                     </button>
-                    <button onclick="closeSectionModal()" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center transition-colors cursor-pointer">
+                    <button type="button" onclick="closeSectionModal()" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center transition-colors cursor-pointer">
                         <i class="fa-solid fa-xmark text-xl"></i>
                     </button>
                 </div>
@@ -481,9 +477,9 @@
     </div>
 
     <!-- ===================================================================== -->
-    <!-- 5. نافذة الأدمن لإضافة أو تعديل عنصر في أي قسم                        -->
+    <!-- 5. نافذة الأدمن لإضافة أو تعديل عنصر داخل القسم المفتوح              -->
     <!-- ===================================================================== -->
-    <div id="adminItemModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-royal-950/85 backdrop-blur-md">
+    <div id="adminItemModal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-royal-950/90 backdrop-blur-md">
         <div class="relative w-full max-w-lg max-h-[90vh] bg-royal-900 border-2 border-gold-500 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-msg">
             
             <div class="px-6 py-4 bg-royal-950 border-b border-gold-500/30 flex items-center justify-between">
@@ -493,18 +489,18 @@
                     </div>
                     <div>
                         <h3 id="adminItemModalTitle" class="text-lg font-black text-white">إضافة عنصر جديد</h3>
-                        <p class="text-[11px] text-gold-400">صلاحية حصرية للأدمن فقط — مزامنة لحظية مع كل الأجهزة</p>
+                        <p id="adminItemModalSectionBadge" class="text-[11px] text-gold-400 font-bold">إضافة داخل القسم المحدد — مزامنة لحظية مع كل الأجهزة</p>
                     </div>
                 </div>
-                <button onclick="closeAdminItemModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center cursor-pointer">
+                <button type="button" onclick="closeAdminItemModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
             <form onsubmit="handleAdminSaveItem(event)" class="p-6 overflow-y-auto space-y-4">
                 
-                <div id="adminSectionSelectWrapper">
-                    <label class="block text-xs font-bold text-gold-400 mb-1.5">اختر القسم:</label>
+                <div id="adminSectionSelectWrapper" class="hidden">
+                    <label class="block text-xs font-bold text-gold-400 mb-1.5">القسم المستهدف:</label>
                     <select id="adminTargetSection" onchange="toggleAdminFormFields()" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/40 text-white text-sm font-bold focus:outline-none focus:border-gold-400">
                         <option value="sitePhotos">📸 صور للموقع (أرض المشروع والمخطط)</option>
                         <option value="afterExecution">✨ صور بعد التنفيذ (التشطيبات النهائية)</option>
@@ -588,20 +584,20 @@
                         <i class="fa-solid fa-check-double"></i>
                         <span>حفظ جميع التغييرات</span>
                     </button>
-                    <button onclick="closeAdminDashboardModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center cursor-pointer">
+                    <button type="button" onclick="closeAdminDashboardModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center cursor-pointer">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
             </div>
 
             <div class="grid grid-cols-3 bg-royal-950/60 p-1.5 mx-6 mt-4 rounded-xl border border-gold-500/20 gap-1">
-                <button id="dashTabClients" onclick="switchDashboardTab('clients')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
+                <button id="dashTabClients" type="button" onclick="switchDashboardTab('clients')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
                     <i class="fa-solid fa-users ml-1"></i> العملاء
                 </button>
-                <button id="dashTabNames" onclick="switchDashboardTab('names')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
+                <button id="dashTabNames" type="button" onclick="switchDashboardTab('names')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
                     <i class="fa-solid fa-font ml-1"></i> تعديل الأسماء
                 </button>
-                <button id="dashTabSecurity" onclick="switchDashboardTab('security')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
+                <button id="dashTabSecurity" type="button" onclick="switchDashboardTab('security')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
                     <i class="fa-solid fa-key ml-1"></i> الأمان
                 </button>
             </div>
@@ -611,7 +607,7 @@
                     <span class="text-xs sm:text-sm font-bold text-slate-200">
                         إجمالي العملاء المسجلين: <strong id="totalClientsLabel" class="text-gold-400 text-base">0</strong> عميل
                     </span>
-                    <button onclick="clearAllClients()" class="px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white text-xs font-bold transition-colors cursor-pointer">
+                    <button type="button" onclick="clearAllClients()" class="px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white text-xs font-bold transition-colors cursor-pointer">
                         <i class="fa-solid fa-trash-can ml-1"></i> مسح القائمة بالكامل
                     </button>
                 </div>
@@ -740,7 +736,7 @@
     <!-- ===================================================================== -->
     <!-- 7. البوت العقاري الذكي                                              -->
     <!-- ===================================================================== -->
-    <div id="chatbotWindow" class="fixed bottom-20 right-4 left-4 sm:left-auto sm:right-6 z-50 sm:w-[410px] max-h-[80vh] bg-royal-900 border-2 border-gold-500/50 rounded-3xl shadow-2xl hidden flex-col overflow-hidden animate-msg">
+    <div id="chatbotWindow" class="fixed bottom-20 right-4 left-4 sm:left-auto sm:right-6 z-40 sm:w-[410px] max-h-[80vh] bg-royal-900 border-2 border-gold-500/50 rounded-3xl shadow-2xl hidden flex-col overflow-hidden animate-msg">
         
         <div class="bg-gradient-to-r from-royal-950 via-royal-800 to-royal-950 p-4 border-b border-gold-500/30 flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -755,7 +751,7 @@
                     <p class="brand-sub-name text-xs text-gold-400 font-medium" dir="ltr">Mohamed Hussein Sales Supervisor</p>
                 </div>
             </div>
-            <button onclick="closeChatbot()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer">
+            <button type="button" onclick="closeChatbot()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer">
                 <i class="fa-solid fa-chevron-down"></i>
             </button>
         </div>
@@ -763,16 +759,16 @@
         <div id="chatMessages" class="p-4 h-[330px] sm:h-[360px] overflow-y-auto space-y-3.5 bg-royal-950/60"></div>
 
         <div class="px-3 py-2.5 bg-royal-900 border-t border-gold-500/20 flex items-center gap-2 overflow-x-auto">
-            <button onclick="handleQuickReply('units')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
+            <button type="button" onclick="handleQuickReply('units')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
                 🏢 الوحدات المتاحة
             </button>
-            <button onclick="handleQuickReply('areas')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
+            <button type="button" onclick="handleQuickReply('areas')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
                 📐 المساحات المتوفرة
             </button>
-            <button onclick="handleQuickReply('installments')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
+            <button type="button" onclick="handleQuickReply('installments')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
                 💳 أنظمة السداد
             </button>
-            <button onclick="handleQuickReply('contact')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
+            <button type="button" onclick="handleQuickReply('contact')" class="shrink-0 px-3 py-1.5 rounded-full bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/40 text-xs font-bold transition-colors cursor-pointer">
                 📞 أرقام التواصل
             </button>
         </div>
@@ -787,7 +783,7 @@
     </div>
 
     <!-- نافذة تأكيد مخصصة أنيقة -->
-    <div id="customConfirmModal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-royal-950/85 backdrop-blur-md">
+    <div id="customConfirmModal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4 bg-royal-950/90 backdrop-blur-md">
         <div class="w-full max-w-sm bg-royal-900 border-2 border-gold-500/50 rounded-3xl p-6 shadow-2xl text-center space-y-4 animate-msg">
             <div class="w-14 h-14 rounded-2xl bg-red-500/20 text-red-400 mx-auto flex items-center justify-center text-2xl">
                 <i class="fa-solid fa-triangle-exclamation"></i>
@@ -795,14 +791,14 @@
             <h4 class="text-lg font-black text-white">تأكيد الإجراء</h4>
             <p id="customConfirmText" class="text-sm text-slate-300 leading-relaxed">هل أنت متأكد؟</p>
             <div class="flex items-center gap-3 pt-2">
-                <button id="customConfirmYesBtn" class="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-sm cursor-pointer">نعم، متأكد</button>
-                <button onclick="closeCustomConfirm()" class="flex-1 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm cursor-pointer">إلغاء</button>
+                <button id="customConfirmYesBtn" type="button" class="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-sm cursor-pointer">نعم، متأكد</button>
+                <button type="button" onclick="closeCustomConfirm()" class="flex-1 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm cursor-pointer">إلغاء</button>
             </div>
         </div>
     </div>
 
     <!-- إشعار منبثق (Toast Notification) -->
-    <div id="toastNotification" class="fixed top-6 left-1/2 -translate-x-1/2 z-[70] hidden items-center gap-2 px-5 py-3 rounded-2xl bg-emerald-600 text-white font-bold text-sm shadow-2xl">
+    <div id="toastNotification" class="fixed top-6 left-1/2 -translate-x-1/2 z-[80] hidden items-center gap-2 px-5 py-3 rounded-2xl bg-emerald-600 text-white font-bold text-sm shadow-2xl">
         <i class="fa-solid fa-circle-check"></i>
         <span id="toastText">تم بنجاح!</span>
     </div>
@@ -1004,6 +1000,7 @@
 
         let SITE_DATA = loadLocalSiteData();
         let REGISTERED_CLIENTS = JSON.parse(localStorage.getItem(STORAGE_CLIENTS_KEY) || localStorage.getItem('mh_registered_clients') || '[]');
+        let lastLocalMutationAt = 0;
 
         function saveLocalCache() {
             localStorage.setItem(STORAGE_MODIFIED_FLAG, 'true');
@@ -1012,10 +1009,11 @@
         }
 
         async function saveSiteData(showSuccess = false) {
+            lastLocalMutationAt = Date.now();
             saveLocalCache();
             applyBrandingToDOM();
             try {
-                await setDoc(siteConfigDocRef, { data: SITE_DATA, updatedAt: Date.now() });
+                await setDoc(siteConfigDocRef, { data: SITE_DATA, updatedAt: lastLocalMutationAt });
                 if (showSuccess) {
                     const timeNow = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
                     showToast(`تم حفظ جميع التغييرات على السحابة (${timeNow}) وتظهر لكل الأجهزة!`);
@@ -1023,7 +1021,7 @@
             } catch (err) {
                 console.error("Firestore save error:", err);
                 if (showSuccess) {
-                    showToast("تم الحفظ محلياً، تعذر الاتصال بـ Firestore مؤقتاً", true);
+                    showToast("تم الحفظ على جهازك، تحقق من قواعد Firestore في Firebase Console", true);
                 }
             }
         }
@@ -1044,24 +1042,34 @@
             }
         }
 
+        function applyRemoteSnapshot(remotePayload) {
+            if (!remotePayload || !remotePayload.data) return;
+            const remoteUpdatedAt = Number(remotePayload.updatedAt || 0);
+            if (remoteUpdatedAt && remoteUpdatedAt < lastLocalMutationAt) return;
+
+            SITE_DATA = normalizeSiteData(remotePayload.data);
+            localStorage.setItem(STORAGE_DATA_KEY, JSON.stringify(SITE_DATA));
+            localStorage.setItem('mh_sales_supervisor_data', JSON.stringify(SITE_DATA));
+            applyBrandingToDOM();
+
+            const sectionModal = document.getElementById('sectionModal');
+            if (currentOpenSectionKey && sectionModal && !sectionModal.classList.contains('hidden')) {
+                openSectionModal(currentOpenSectionKey);
+            }
+        }
+
         function startRealtimeSync() {
             getDoc(siteConfigDocRef).then((snap) => {
-                if (snap.exists() && snap.data()?.data) {
-                    SITE_DATA = normalizeSiteData(snap.data().data);
-                    saveLocalCache();
-                    applyBrandingToDOM();
-                    if (currentOpenSectionKey) openSectionModal(currentOpenSectionKey);
+                if (snap.exists()) {
+                    applyRemoteSnapshot(snap.data());
                 } else {
                     setDoc(siteConfigDocRef, { data: SITE_DATA, updatedAt: Date.now() }).catch(() => {});
                 }
             }).catch(() => {});
 
             onSnapshot(siteConfigDocRef, (snap) => {
-                if (snap.exists() && snap.data()?.data) {
-                    SITE_DATA = normalizeSiteData(snap.data().data);
-                    saveLocalCache();
-                    applyBrandingToDOM();
-                    if (currentOpenSectionKey) openSectionModal(currentOpenSectionKey);
+                if (snap.exists()) {
+                    applyRemoteSnapshot(snap.data());
                 }
             });
 
@@ -1190,15 +1198,15 @@
 
             if (currentUser.role === 'client') {
                 adminBanner.classList.add('hidden');
-                if (modalQuickAdd) modalQuickAdd.classList.add('hidden');
-                if (modalSaveAll) modalSaveAll.classList.add('hidden');
+                if (modalQuickAdd) { modalQuickAdd.classList.add('hidden'); modalQuickAdd.classList.remove('flex'); }
+                if (modalSaveAll) { modalSaveAll.classList.add('hidden'); modalSaveAll.classList.remove('flex'); }
                 adminCardControls.forEach(el => { el.classList.add('hidden'); el.classList.remove('flex'); });
 
                 controls.innerHTML = `
                     <div class="flex items-center gap-2 bg-royal-800 border border-gold-500/30 px-3 py-1.5 rounded-xl">
                         <i class="fa-solid fa-circle-user text-gold-400 text-base"></i>
                         <span class="text-xs font-bold text-white max-w-[130px] truncate">${escapeHTML(currentUser.name)}</span>
-                        <button onclick="logoutUser()" title="تسجيل الخروج" class="text-red-400 hover:text-red-300 text-xs mr-1 cursor-pointer">
+                        <button type="button" onclick="logoutUser()" title="تسجيل الخروج" class="text-red-400 hover:text-red-300 text-xs mr-1 cursor-pointer">
                             <i class="fa-solid fa-right-from-bracket"></i>
                         </button>
                     </div>
@@ -1215,28 +1223,22 @@
                     modalSaveAll.classList.add('flex');
                 }
                 controls.innerHTML = `
-                    <button onclick="commitAllAdminChanges()" 
+                    <button type="button" onclick="commitAllAdminChanges()" 
                             class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs sm:text-sm shadow cursor-pointer">
                         <i class="fa-solid fa-check-double"></i>
                         <span class="hidden md:inline">حفظ جميع التغييرات</span>
                     </button>
-                    <button onclick="openAdminDashboardModal('names')" 
+                    <button type="button" onclick="openAdminDashboardModal('names')" 
                             class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-royal-800 hover:bg-royal-700 text-gold-400 border border-gold-500/50 font-extrabold text-xs sm:text-sm shadow cursor-pointer">
                         <i class="fa-solid fa-font"></i>
                         <span class="hidden sm:inline">الأسماء</span>
                     </button>
-                    <button onclick="openAdminDashboardModal('clients')" 
+                    <button type="button" onclick="openAdminDashboardModal('clients')" 
                             class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-royal-800 hover:bg-royal-700 text-gold-400 border border-gold-500/50 font-extrabold text-xs sm:text-sm shadow cursor-pointer">
                         <i class="fa-solid fa-users-gear"></i>
                         <span class="hidden sm:inline">الإدارة</span>
                     </button>
-                    <button onclick="openAdminItemModal('add')" 
-                            title="إضافة عنصر جديد (للأدمن فقط)"
-                            class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-xs sm:text-sm shadow-lg hover:scale-105 transition-transform cursor-pointer">
-                        <i class="fa-solid fa-circle-plus text-base"></i>
-                        <span>إضافة</span>
-                    </button>
-                    <button onclick="logoutUser()" title="خروج الأدمن" class="w-9 h-9 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/40 flex items-center justify-center transition-colors cursor-pointer">
+                    <button type="button" onclick="logoutUser()" title="خروج الأدمن" class="w-9 h-9 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/40 flex items-center justify-center transition-colors cursor-pointer">
                         <i class="fa-solid fa-right-from-bracket"></i>
                     </button>
                 `;
@@ -1306,7 +1308,7 @@
                 sessionStorage.setItem('bgm_current_user', JSON.stringify(currentUser));
                 document.getElementById('adminPassInput').value = '';
                 renderAuthUI();
-                showToast("تم تسجيل دخول الأدمن بنجاح — جميع صلاحيات التعديل والإضافة والحفظ مفعّلة");
+                showToast("تم تسجيل دخول الأدمن بنجاح — يمكنك الإضافة من داخل كل قسم وحفظ التغييرات");
             } else {
                 showToast("بيانات الإدارة غير صحيحة! تأكد من الاسم وكلمة المرور", true);
             }
@@ -1491,7 +1493,7 @@
                         <a href="https://wa.me/2${escapeHTML(client.phone)}" target="_blank" title="مراسلة واتساب" class="w-9 h-9 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center transition-colors">
                             <i class="fa-brands fa-whatsapp text-base"></i>
                         </a>
-                        <button onclick="deleteClientRecord(${index})" title="حذف العميل" class="w-9 h-9 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+                        <button type="button" onclick="deleteClientRecord(${index})" title="حذف العميل" class="w-9 h-9 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
                             <i class="fa-solid fa-trash-can text-xs"></i>
                         </button>
                     </div>
@@ -1531,8 +1533,14 @@
         }
 
         /* ==================================================================== */
-        /* نافذة الأدمن لإضافة أو تعديل أو حذف عناصر في كل قسم                  */
+        /* نافذة الأدمن لإضافة أو تعديل أو حذف عناصر من داخل كل قسم           */
         /* ==================================================================== */
+        function triggerAddInsideCurrentSection() {
+            if (!currentUser || currentUser.role !== 'admin') return;
+            const target = currentOpenSectionKey || 'sitePhotos';
+            openAdminItemModal('add', target, null);
+        }
+
         function openAdminItemModal(mode = 'add', sectionKey = null, itemIndex = null) {
             if (!currentUser || currentUser.role !== 'admin') return;
 
@@ -1545,20 +1553,25 @@
             document.getElementById('adminItemSub').value = '';
             document.getElementById('adminItemDesc').value = '';
             document.getElementById('adminImageUrlInput').value = '';
+            document.getElementById('adminFileInput').value = '';
             document.getElementById('adminImagePreviewBox').classList.add('hidden');
 
             const sectionSelect = document.getElementById('adminTargetSection');
             const sectionSelectWrapper = document.getElementById('adminSectionSelectWrapper');
             sectionSelect.value = targetSection;
+            sectionSelectWrapper.classList.add('hidden');
+
+            const secTitle = SITE_DATA[targetSection]?.title || targetSection;
+            const badgeEl = document.getElementById('adminItemModalSectionBadge');
 
             if (mode === 'edit') {
                 document.getElementById('adminItemModalTitle').textContent = "تعديل العنصر";
                 document.getElementById('adminItemModalIcon').className = "fa-solid fa-pen-to-square";
-                sectionSelectWrapper.classList.add('hidden');
+                badgeEl.textContent = `تعديل داخل: ${secTitle}`;
             } else {
                 document.getElementById('adminItemModalTitle').textContent = "إضافة عنصر جديد";
                 document.getElementById('adminItemModalIcon').className = "fa-solid fa-folder-plus";
-                sectionSelectWrapper.classList.remove('hidden');
+                badgeEl.textContent = `إضافة داخل: ${secTitle}`;
             }
 
             toggleAdminFormFields();
@@ -1589,19 +1602,19 @@
                 }
             }
 
-            document.getElementById('adminItemModal').classList.remove('hidden');
-            document.getElementById('adminItemModal').classList.add('flex');
+            const modalEl = document.getElementById('adminItemModal');
+            modalEl.classList.remove('hidden');
+            modalEl.classList.add('flex');
         }
 
         function closeAdminItemModal() {
-            document.getElementById('adminItemModal').classList.add('hidden');
-            document.getElementById('adminItemModal').classList.remove('flex');
+            const modalEl = document.getElementById('adminItemModal');
+            modalEl.classList.add('hidden');
+            modalEl.classList.remove('flex');
         }
 
         function toggleAdminFormFields() {
-            const target = adminEditState.mode === 'edit'
-                ? adminEditState.section
-                : document.getElementById('adminTargetSection').value;
+            const target = adminEditState.section || document.getElementById('adminTargetSection').value;
 
             const imgField = document.getElementById('adminImageUploadField');
             const extraField = document.getElementById('adminExtraDetailsField');
@@ -1657,9 +1670,7 @@
             e.preventDefault();
             if (!currentUser || currentUser.role !== 'admin') return;
 
-            const target = adminEditState.mode === 'edit'
-                ? adminEditState.section
-                : document.getElementById('adminTargetSection').value;
+            const target = adminEditState.section || document.getElementById('adminTargetSection').value;
 
             const title = document.getElementById('adminItemTitle').value.trim();
             const badge = document.getElementById('adminItemBadge').value.trim();
@@ -1710,9 +1721,9 @@
                 }
             }
 
-            await saveSiteData(true);
             closeAdminItemModal();
             openSectionModal(target);
+            await saveSiteData(true);
         }
 
         function deleteAdminItem(sectionKey, index) {
@@ -1728,8 +1739,8 @@
                     SITE_DATA.areasInfo.items.splice(index, 1);
                 }
 
-                await saveSiteData(true);
                 openSectionModal(sectionKey);
+                await saveSiteData(true);
             });
         }
 
@@ -1781,10 +1792,10 @@
                         <div class="relative bg-royal-950 border border-gold-500/35 rounded-2xl p-5 flex flex-col justify-between hover:border-gold-400 transition-all shadow-lg">
                             ${isAdmin ? `
                                 <div class="flex items-center justify-end gap-1.5 mb-3 pb-2 border-b border-white/10">
-                                    <button onclick="openAdminItemModal('edit', 'installments', ${idx})" title="تعديل" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-royal-950 text-xs font-bold transition-colors cursor-pointer">
+                                    <button type="button" onclick="openAdminItemModal('edit', 'installments', ${idx})" title="تعديل" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-royal-950 text-xs font-bold transition-colors cursor-pointer">
                                         <i class="fa-solid fa-pen"></i> تعديل
                                     </button>
-                                    <button onclick="deleteAdminItem('installments', ${idx})" title="حذف" class="px-2.5 py-1 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white text-xs font-bold transition-colors cursor-pointer">
+                                    <button type="button" onclick="deleteAdminItem('installments', ${idx})" title="حذف" class="px-2.5 py-1 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white text-xs font-bold transition-colors cursor-pointer">
                                         <i class="fa-solid fa-trash"></i> حذف
                                     </button>
                                 </div>
@@ -1795,7 +1806,7 @@
                                 <p class="text-gold-400 font-bold text-sm mb-3"><i class="fa-regular fa-calendar-check ml-1"></i> ${escapeHTML(plan.duration)}</p>
                                 <p class="text-slate-300 text-sm leading-relaxed">${escapeHTML(plan.details)}</p>
                             </div>
-                            <button onclick="closeSectionModal(); handleQuickReply('contact');" class="mt-5 w-full py-2.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-extrabold text-sm hover:opacity-90 transition-opacity cursor-pointer">
+                            <button type="button" onclick="closeSectionModal(); handleQuickReply('contact');" class="mt-5 w-full py-2.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-extrabold text-sm hover:opacity-90 transition-opacity cursor-pointer">
                                 احجز هذا النظام الآن
                             </button>
                         </div>
@@ -1812,10 +1823,10 @@
                         <div class="group relative rounded-2xl overflow-hidden bg-royal-950 border border-gold-500/30 shadow-lg">
                             ${isAdmin ? `
                                 <div class="absolute top-3 left-3 z-20 flex items-center gap-1.5">
-                                    <button onclick="openAdminItemModal('edit', '${sectionKey}', ${index})" title="تعديل الصورة" class="w-9 h-9 rounded-xl bg-amber-500 hover:bg-amber-400 text-royal-950 flex items-center justify-center shadow-lg cursor-pointer">
+                                    <button type="button" onclick="openAdminItemModal('edit', '${sectionKey}', ${index})" title="تعديل الصورة" class="w-9 h-9 rounded-xl bg-amber-500 hover:bg-amber-400 text-royal-950 flex items-center justify-center shadow-lg cursor-pointer">
                                         <i class="fa-solid fa-pen"></i>
                                     </button>
-                                    <button onclick="deleteAdminItem('${sectionKey}', ${index})" title="حذف الصورة" class="w-9 h-9 rounded-xl bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-lg cursor-pointer">
+                                    <button type="button" onclick="deleteAdminItem('${sectionKey}', ${index})" title="حذف الصورة" class="w-9 h-9 rounded-xl bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-lg cursor-pointer">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </div>
@@ -1849,10 +1860,10 @@
                                     </h4>
                                     ${isAdmin ? `
                                         <div class="flex items-center gap-1.5 shrink-0">
-                                            <button onclick="openAdminItemModal('edit', 'unitsInfo', ${idx})" title="تعديل" class="w-8 h-8 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-royal-950 flex items-center justify-center cursor-pointer">
+                                            <button type="button" onclick="openAdminItemModal('edit', 'unitsInfo', ${idx})" title="تعديل" class="w-8 h-8 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-royal-950 flex items-center justify-center cursor-pointer">
                                                 <i class="fa-solid fa-pen text-xs"></i>
                                             </button>
-                                            <button onclick="deleteAdminItem('unitsInfo', ${idx})" title="حذف" class="w-8 h-8 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white flex items-center justify-center cursor-pointer">
+                                            <button type="button" onclick="deleteAdminItem('unitsInfo', ${idx})" title="حذف" class="w-8 h-8 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white flex items-center justify-center cursor-pointer">
                                                 <i class="fa-solid fa-trash text-xs"></i>
                                             </button>
                                         </div>
@@ -1860,7 +1871,7 @@
                                 </div>
                                 <p class="text-slate-300 text-sm leading-relaxed">${escapeHTML(unit.details)}</p>
                             </div>
-                            <button onclick="closeSectionModal(); handleQuickReply('contact');" class="mt-4 w-full py-2 rounded-xl bg-white/10 hover:bg-gold-500 text-white hover:text-royal-950 font-bold text-xs sm:text-sm transition-colors cursor-pointer">
+                            <button type="button" onclick="closeSectionModal(); handleQuickReply('contact');" class="mt-4 w-full py-2 rounded-xl bg-white/10 hover:bg-gold-500 text-white hover:text-royal-950 font-bold text-xs sm:text-sm transition-colors cursor-pointer">
                                 استفسر عن هذه الوحدة
                             </button>
                         </div>
@@ -1882,10 +1893,10 @@
                                     </h4>
                                     ${isAdmin ? `
                                         <div class="flex items-center gap-1.5 shrink-0">
-                                            <button onclick="openAdminItemModal('edit', 'areasInfo', ${idx})" title="تعديل" class="w-8 h-8 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-royal-950 flex items-center justify-center cursor-pointer">
+                                            <button type="button" onclick="openAdminItemModal('edit', 'areasInfo', ${idx})" title="تعديل" class="w-8 h-8 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-royal-950 flex items-center justify-center cursor-pointer">
                                                 <i class="fa-solid fa-pen text-xs"></i>
                                             </button>
-                                            <button onclick="deleteAdminItem('areasInfo', ${idx})" title="حذف" class="w-8 h-8 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white flex items-center justify-center cursor-pointer">
+                                            <button type="button" onclick="deleteAdminItem('areasInfo', ${idx})" title="حذف" class="w-8 h-8 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white flex items-center justify-center cursor-pointer">
                                                 <i class="fa-solid fa-trash text-xs"></i>
                                             </button>
                                         </div>
@@ -1893,7 +1904,7 @@
                                 </div>
                                 <p class="text-slate-300 text-sm leading-relaxed">${escapeHTML(area.type)}</p>
                             </div>
-                            <button onclick="closeSectionModal(); handleQuickReply('contact');" class="mt-4 w-full py-2 rounded-xl bg-white/10 hover:bg-gold-500 text-white hover:text-royal-950 font-bold text-xs sm:text-sm transition-colors cursor-pointer">
+                            <button type="button" onclick="closeSectionModal(); handleQuickReply('contact');" class="mt-4 w-full py-2 rounded-xl bg-white/10 hover:bg-gold-500 text-white hover:text-royal-950 font-bold text-xs sm:text-sm transition-colors cursor-pointer">
                                 اطلب المخطط الهندسي
                             </button>
                         </div>
@@ -2121,7 +2132,7 @@
             const textEl = document.getElementById('toastText');
             
             textEl.textContent = message;
-            toast.className = `fixed top-6 left-1/2 -translate-x-1/2 z-[70] flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-sm shadow-2xl ${
+            toast.className = `fixed top-6 left-1/2 -translate-x-1/2 z-[80] flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-sm shadow-2xl ${
                 isError ? 'bg-red-600 text-white' : 'bg-emerald-600 text-white'
             }`;
             toast.querySelector('i').className = isError ? 'fa-solid fa-circle-exclamation' : 'fa-solid fa-circle-check';
@@ -2144,6 +2155,7 @@
             logoutUser,
             openSectionModal,
             closeSectionModal,
+            triggerAddInsideCurrentSection,
             openAdminItemModal,
             closeAdminItemModal,
             toggleAdminFormFields,
@@ -2168,8 +2180,8 @@
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                closeSectionModal();
                 closeAdminItemModal();
+                closeSectionModal();
                 closeAdminDashboardModal();
                 closeCustomConfirm();
                 closeChatbot();
