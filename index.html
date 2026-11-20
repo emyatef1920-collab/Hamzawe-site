@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حمزاوي العقارية | Hamzawy Real Estate</title>
+    <title>Mohamed Hossein مستشارك العقاري | Real Estate Consultant</title>
     
     <!-- خط القاهرة العصري الفاخر -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,38 +100,38 @@
     <header class="sticky top-0 z-40 w-full bg-royal-950/95 backdrop-blur-md border-b border-gold-500/25 shadow-lg">
         <div class="w-full px-4 sm:px-8 lg:px-10 py-3 flex flex-wrap items-center justify-between gap-3">
             
-            <!-- أقصى اليمين: شعار واسم حمزاوي العقارية -->
+            <!-- أقصى اليمين: شعار واسم Mohamed Hossein مستشارك العقاري -->
             <a href="#" class="flex items-center gap-3 group">
                 <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-royal-950 shadow-lg group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-crown text-xl sm:text-2xl"></i>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-xl sm:text-2xl font-black tracking-wide text-white leading-none">
-                        حمزاوي <span class="text-gold-400">العقارية</span>
+                    <span class="text-lg sm:text-2xl font-black tracking-wide text-white leading-none">
+                        Mohamed Hossein <span class="text-gold-400">مستشارك العقاري</span>
                     </span>
                     <span class="text-[10px] sm:text-xs text-slate-400 font-semibold tracking-wider mt-1">
-                        HAMZAWY REAL ESTATE
+                        MOHAMED HOSSEIN REAL ESTATE CONSULTANT
                     </span>
                 </div>
             </a>
 
-            <!-- أقصى اليسار (أعلى شمال الموقع): أيقونات الوحدات والمساحات + أزرار الحسابات -->
+            <!-- أقصى اليسار: أيقونات الوحدات والمساحات + أزرار الحسابات -->
             <div class="flex flex-wrap items-center gap-2 sm:gap-3">
                 
                 <!-- زر/أيقونة الوحدات -->
-                <button onclick="triggerBotFromHeader('units')" 
+                <button onclick="openSectionModal('unitsInfo')" 
                         class="group flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-royal-800/90 hover:bg-gradient-to-r hover:from-gold-500 hover:to-gold-400 text-white hover:text-royal-950 border border-gold-500/40 transition-all duration-300 shadow-md gold-glow-hover cursor-pointer">
                     <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gold-500/20 group-hover:bg-royal-950/15 flex items-center justify-center text-gold-400 group-hover:text-royal-950 transition-colors">
                         <i class="fa-solid fa-building text-sm sm:text-base"></i>
                     </span>
                     <div class="text-right">
                         <span class="block text-xs sm:text-sm font-extrabold leading-tight">الوحدات</span>
-                        <span class="hidden xl:block text-[10px] opacity-75 font-medium">استفسر الآن</span>
+                        <span class="hidden xl:block text-[10px] opacity-75 font-medium">عرض الوحدات</span>
                     </div>
                 </button>
 
                 <!-- زر/أيقونة المساحات -->
-                <button onclick="triggerBotFromHeader('areas')" 
+                <button onclick="openSectionModal('areasInfo')" 
                         class="group flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-royal-800/90 hover:bg-gradient-to-r hover:from-gold-500 hover:to-gold-400 text-white hover:text-royal-950 border border-gold-500/40 transition-all duration-300 shadow-md gold-glow-hover cursor-pointer">
                     <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gold-500/20 group-hover:bg-royal-950/15 flex items-center justify-center text-gold-400 group-hover:text-royal-950 transition-colors">
                         <i class="fa-solid fa-ruler-combined text-sm sm:text-base"></i>
@@ -155,18 +155,28 @@
     </header>
 
     <!-- ===================================================================== -->
-    <!-- شريط تنبيه خاص بالأدمن يظهر فقط عند تسجيل دخول الأدمن               -->
+    <!-- شريط تنبيه وتحكم سريع خاص بالأدمن يظهر فقط عند تسجيل دخول الأدمن      -->
     <!-- ===================================================================== -->
     <div id="adminBanner" class="hidden w-full bg-gradient-to-l from-gold-600 via-gold-500 to-gold-400 text-royal-950 px-4 sm:px-8 py-2.5 shadow-md">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-2 font-extrabold text-xs sm:text-sm">
                 <i class="fa-solid fa-shield-halved text-base"></i>
-                <span>وضع الإدارة (Admin Mode): لديك صلاحية كاملة لإضافة مشاريع وصور جديدة وتحديث الموقع مباشرة.</span>
+                <span>وضع الإدارة (Admin): يمكنك الإضافة والتعديل والحذف في أي قسم، ومشاهدة أرقام العملاء المسجلين.</span>
             </div>
-            <button onclick="openAdminAddModal()" class="px-3.5 py-1.5 rounded-lg bg-royal-950 text-gold-400 hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>إضافة مشروع / صور جديدة</span>
-            </button>
+            <div class="flex flex-wrap items-center gap-2">
+                <button onclick="openAdminDashboardModal('clients')" class="px-3 py-1.5 rounded-lg bg-royal-950 text-gold-400 hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
+                    <i class="fa-solid fa-users"></i>
+                    <span>بيانات العملاء (<span id="bannerClientsCount">0</span>)</span>
+                </button>
+                <button onclick="openAdminItemModal('add')" class="px-3 py-1.5 rounded-lg bg-royal-950 text-emerald-400 hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <span>إضافة عنصر جديد</span>
+                </button>
+                <button onclick="openAdminDashboardModal('security')" class="px-3 py-1.5 rounded-lg bg-royal-950 text-white hover:bg-royal-900 font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
+                    <i class="fa-solid fa-key"></i>
+                    <span>تغيير الباسورد</span>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -180,7 +190,7 @@
                 رؤية معمارية فاخرة تليق بطموحك
             </p>
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white">
-                اكتشف مشاريع <span class="text-gold-400">حمزاوي العقارية</span>
+                اكتشف مشاريع <span class="text-gold-400">Mohamed Hossein مستشارك العقاري</span>
             </h1>
         </div>
 
@@ -201,6 +211,13 @@
                         <span class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span>
                         تسهيلات حصرية
                     </div>
+
+                    <!-- أيقونة تحكم سريع للأدمن على البطاقة -->
+                    <button onclick="event.stopPropagation(); openSectionModal('installments')" 
+                            class="admin-only-control hidden absolute top-5 left-5 z-20 px-3 py-1.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs shadow-lg items-center gap-1.5 hover:bg-gold-400">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span>إدارة القسم</span>
+                    </button>
 
                     <div class="relative z-10 p-6 sm:p-8 flex flex-col items-start">
                         <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center shadow-xl mb-4 group-hover:-translate-y-2 transition-transform duration-300">
@@ -233,6 +250,13 @@
                         أرض الواقع والمخطط
                     </div>
 
+                    <!-- أيقونة تحكم سريع للأدمن على البطاقة -->
+                    <button onclick="event.stopPropagation(); openSectionModal('sitePhotos')" 
+                            class="admin-only-control hidden absolute top-5 left-5 z-20 px-3 py-1.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs shadow-lg items-center gap-1.5 hover:bg-gold-400">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span>إدارة القسم</span>
+                    </button>
+
                     <div class="relative z-10 p-6 sm:p-8 flex flex-col items-start">
                         <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center shadow-xl mb-4 group-hover:-translate-y-2 transition-transform duration-300">
                             <i class="fa-solid fa-map-location-dot text-3xl sm:text-4xl"></i>
@@ -264,6 +288,13 @@
                         تشطيبات فاخرة
                     </div>
 
+                    <!-- أيقونة تحكم سريع للأدمن على البطاقة -->
+                    <button onclick="event.stopPropagation(); openSectionModal('afterExecution')" 
+                            class="admin-only-control hidden absolute top-5 left-5 z-20 px-3 py-1.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs shadow-lg items-center gap-1.5 hover:bg-gold-400">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span>إدارة القسم</span>
+                    </button>
+
                     <div class="relative z-10 p-6 sm:p-8 flex flex-col items-start">
                         <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center shadow-xl mb-4 group-hover:-translate-y-2 transition-transform duration-300">
                             <i class="fa-solid fa-wand-magic-sparkles text-3xl sm:text-4xl"></i>
@@ -289,17 +320,25 @@
     <!-- 3. الفوتر (Footer)                                                    -->
     <!-- ===================================================================== -->
     <footer class="w-full bg-royal-900/90 border-t border-gold-500/20 py-3.5 px-4 sm:px-8 text-center sm:flex sm:items-center sm:justify-between text-xs sm:text-sm text-slate-400">
-        <p>© 2026 جميع الحقوق محفوظة لشركة <span class="text-gold-400 font-bold">حمزاوي العقارية</span></p>
-        <div class="flex items-center justify-center gap-4 mt-2 sm:mt-0">
+        <p>جميع الحقوق محفوظة لـ <span class="text-gold-400 font-bold">Mohamed Hossein مستشارك العقاري</span></p>
+        <div class="flex flex-wrap items-center justify-center gap-4 mt-2 sm:mt-0">
+            <a href="tel:01151997989" class="hover:text-gold-400 transition-colors flex items-center gap-1.5 font-bold text-slate-300">
+                <i class="fa-solid fa-phone text-gold-400"></i>
+                <span dir="ltr">01151997989</span>
+            </a>
+            <a href="https://wa.me/201151997989" target="_blank" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5 font-bold text-slate-300">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                <span>واتساب المبيعات</span>
+            </a>
             <button onclick="openChatbot()" class="hover:text-gold-400 transition-colors flex items-center gap-1.5 cursor-pointer">
                 <i class="fa-solid fa-headset text-gold-400"></i>
-                <span>تواصل مع مستشار المبيعات</span>
+                <span>المساعد الذكي</span>
             </button>
         </div>
     </footer>
 
     <!-- ===================================================================== -->
-    <!-- 4. نافذة عرض أقسام البطاقات الثلاث (Section Modal)                    -->
+    <!-- 4. نافذة عرض الأقسام (مع أزرار الإضافة والتعديل والحذف للأدمن)        -->
     <!-- ===================================================================== -->
     <div id="sectionModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-royal-950/85 backdrop-blur-md">
         <div class="relative w-full max-w-5xl max-h-[90vh] bg-royal-900 border-2 border-gold-500/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-msg">
@@ -311,14 +350,14 @@
                     </div>
                     <div>
                         <h3 id="modalTitle" class="text-xl sm:text-2xl font-black text-white">عنوان القسم</h3>
-                        <p id="modalSubtitle" class="text-xs sm:text-sm text-gold-400">حمزاوي العقارية</p>
+                        <p id="modalSubtitle" class="text-xs sm:text-sm text-gold-400">Mohamed Hossein مستشارك العقاري</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
-                    <!-- زر إضافة داخل النافذة يظهر للأدمن فقط -->
-                    <button id="modalAdminQuickAddBtn" onclick="closeSectionModal(); openAdminAddModal();" class="hidden px-3.5 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold text-xs items-center gap-1.5 cursor-pointer">
+                    <!-- أيقونة إضافة داخل النافذة تظهر للأدمن فقط -->
+                    <button id="modalAdminQuickAddBtn" onclick="openAdminItemModal('add', currentOpenSectionKey)" class="hidden px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-royal-950 font-extrabold text-xs items-center gap-1.5 cursor-pointer shadow">
                         <i class="fa-solid fa-plus"></i>
-                        <span>إضافة هنا</span>
+                        <span>إضافة في هذا القسم</span>
                     </button>
                     <button onclick="closeSectionModal()" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center transition-colors cursor-pointer">
                         <i class="fa-solid fa-xmark text-xl"></i>
@@ -338,7 +377,7 @@
     </div>
 
     <!-- ===================================================================== -->
-    <!-- 5. نافذة تسجيل الدخول / إنشاء حساب (للعملاء وللأدمن)                 -->
+    <!-- 5. نافذة تسجيل الدخول (للعملاء بالاسم الثنائي والهاتف + دخول الأدمن)  -->
     <!-- ===================================================================== -->
     <div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-royal-950/85 backdrop-blur-md">
         <div class="relative w-full max-w-md bg-royal-900 border-2 border-gold-500/40 rounded-3xl shadow-2xl overflow-hidden animate-msg">
@@ -349,7 +388,7 @@
                     <div class="w-9 h-9 rounded-xl bg-gold-500 text-royal-950 flex items-center justify-center font-bold">
                         <i class="fa-solid fa-user-shield"></i>
                     </div>
-                    <h3 id="authModalTitle" class="text-lg font-black text-white">بوابة الدخول</h3>
+                    <h3 id="authModalTitle" class="text-lg font-black text-white">تسجيل دخول العملاء</h3>
                 </div>
                 <button onclick="closeAuthModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
@@ -359,58 +398,84 @@
             <!-- تبويبات التبديل بين (حساب عميل) و (دخول الأدمن) -->
             <div class="grid grid-cols-2 bg-royal-950/60 p-1.5 mx-6 mt-5 rounded-xl border border-gold-500/20">
                 <button id="tabClientBtn" onclick="switchAuthTab('client')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
-                    <i class="fa-solid fa-user ml-1"></i> حساب العملاء
+                    <i class="fa-solid fa-user ml-1"></i> تسجيل العملاء
                 </button>
                 <button id="tabAdminBtn" onclick="switchAuthTab('admin')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
                     <i class="fa-solid fa-crown ml-1"></i> دخول الأدمن
                 </button>
             </div>
 
-            <!-- نموذج العميل (تسجيل دخول + إنشاء حساب جديد) -->
+            <!-- نموذج العميل (الاسم الثنائي + رقم الهاتف فقط) -->
             <div id="clientAuthFormContainer" class="p-6 space-y-4">
-                <div class="flex items-center justify-center gap-4 text-xs font-bold border-b border-white/10 pb-3">
-                    <button type="button" id="clientSubTabLogin" onclick="toggleClientMode('login')" class="text-gold-400 border-b-2 border-gold-400 pb-1 cursor-pointer">تسجيل الدخول</button>
-                    <button type="button" id="clientSubTabRegister" onclick="toggleClientMode('register')" class="text-slate-400 hover:text-white pb-1 cursor-pointer">إنشاء حساب جديد (إيميل)</button>
-                </div>
+                <p class="text-xs text-slate-300 leading-relaxed text-center bg-royal-950/60 p-3 rounded-xl border border-gold-500/20">
+                    سجّل باسمك الثنائي ورقم هاتفك للتواصل معك بأحدث العروض من <strong class="text-gold-400">Mohamed Hossein مستشارك العقاري</strong>.
+                </p>
 
-                <form onsubmit="handleClientAuthSubmit(event)" class="space-y-3.5">
-                    <div id="clientNameField" class="hidden">
-                        <label class="block text-xs font-bold text-slate-300 mb-1">الاسم الكامل</label>
-                        <input type="text" id="clientNameInput" placeholder="أدخل اسمك بالكامل" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                <form onsubmit="handleClientAuthSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1.5">الاسم الثنائي <span class="text-red-400">*</span></label>
+                        <div class="relative">
+                            <input type="text" id="clientFullNameInput" required placeholder="مثال: أحمد محمود" class="w-full px-4 py-3 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                        </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">البريد الإلكتروني</label>
-                        <input type="email" id="clientEmailInput" required placeholder="example@email.com" dir="ltr" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm text-right focus:outline-none focus:border-gold-400">
+                        <label class="block text-xs font-bold text-slate-300 mb-1.5">رقم الهاتف (واتساب / اتصال) <span class="text-red-400">*</span></label>
+                        <div class="relative">
+                            <input type="tel" id="clientPhoneInput" required maxlength="11" placeholder="01xxxxxxxxx" dir="ltr" class="w-full px-4 py-3 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm text-right focus:outline-none focus:border-gold-400">
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">كلمة المرور</label>
-                        <input type="password" id="clientPassInput" required placeholder="••••••••" dir="ltr" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm text-right focus:outline-none focus:border-gold-400">
-                    </div>
-                    <button type="submit" id="clientSubmitBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-sm shadow-lg hover:opacity-95 transition-opacity cursor-pointer">
-                        دخول إلى حسابي
+                    <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-sm shadow-lg hover:opacity-95 transition-opacity cursor-pointer flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>تسجيل الدخول الآن</span>
                     </button>
                 </form>
             </div>
 
-            <!-- نموذج دخول الأدمن المباشر -->
+            <!-- نموذج دخول الأدمن + استعادة كلمة المرور -->
             <div id="adminAuthFormContainer" class="hidden p-6 space-y-4">
-                <div class="p-3 rounded-xl bg-gold-500/10 border border-gold-500/30 text-xs text-gold-300 leading-relaxed">
-                    <i class="fa-solid fa-circle-info ml-1"></i>
-                    للمعاينة السريعة: اسم المستخدم <strong class="text-white">admin</strong> وكلمة المرور <strong class="text-white">1234</strong> (أو اضغطي دخول مباشر).
-                </div>
-                <form onsubmit="handleAdminLoginSubmit(event)" class="space-y-3.5">
+                <!-- نموذج الدخول العادي -->
+                <form id="adminLoginForm" onsubmit="handleAdminLoginSubmit(event)" class="space-y-3.5">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">اسم مستخدم الإدارة</label>
-                        <input type="text" id="adminUserInput" value="admin" required class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                        <input type="text" id="adminUserInput" placeholder="admin" required class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">كلمة مرور الإدارة</label>
-                        <input type="password" id="adminPassInput" value="1234" required class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="block text-xs font-bold text-slate-300">كلمة مرور الإدارة</label>
+                            <button type="button" onclick="toggleForgotAdminPass(true)" class="text-[11px] text-gold-400 hover:underline font-bold cursor-pointer">
+                                نسيت كلمة المرور؟
+                            </button>
+                        </div>
+                        <input type="password" id="adminPassInput" placeholder="••••••••" required class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-sm shadow-lg hover:opacity-95 transition-opacity cursor-pointer flex items-center justify-center gap-2">
                         <i class="fa-solid fa-right-to-bracket"></i>
-                        <span>دخول لوحة تحكم الأدمن مباشرة</span>
+                        <span>دخول لوحة تحكم الأدمن</span>
                     </button>
+                </form>
+
+                <!-- نموذج استعادة كلمة المرور في حال نسيانها -->
+                <form id="adminForgotForm" onsubmit="handleAdminResetPassword(event)" class="hidden space-y-3.5">
+                    <div class="p-3 rounded-xl bg-gold-500/10 border border-gold-500/30 text-xs text-gold-300 leading-relaxed">
+                        <i class="fa-solid fa-key ml-1"></i>
+                        لإعادة تعيين كلمة المرور، أدخل <strong>كود الاسترداد السري</strong> الخاص بالأدمن (الافتراضي: <code class="text-white font-bold">MH2026</code>) ثم اكتب كلمة المرور الجديدة.
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">كود الاسترداد السري</label>
+                        <input type="text" id="adminRecoveryCodeInput" required placeholder="أدخل كود الاسترداد" dir="ltr" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm text-right focus:outline-none focus:border-gold-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">كلمة المرور الجديدة</label>
+                        <input type="password" id="adminNewResetPassInput" required minlength="4" placeholder="اكتب كلمة المرور الجديدة" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button type="submit" class="flex-1 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-royal-950 font-black text-xs sm:text-sm cursor-pointer">
+                            حفظ الباسورد الجديد
+                        </button>
+                        <button type="button" onclick="toggleForgotAdminPass(false)" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs cursor-pointer">
+                            رجوع
+                        </button>
+                    </div>
                 </form>
             </div>
 
@@ -418,54 +483,61 @@
     </div>
 
     <!-- ===================================================================== -->
-    <!-- 6. نافذة الأدمن الحصرية لإضافة مشاريع وصور جديدة                      -->
+    <!-- 6. نافذة الأدمن لإضافة أو تعديل عنصر في أي قسم                        -->
     <!-- ===================================================================== -->
-    <div id="adminAddModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-royal-950/85 backdrop-blur-md">
+    <div id="adminItemModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-royal-950/85 backdrop-blur-md">
         <div class="relative w-full max-w-lg max-h-[90vh] bg-royal-900 border-2 border-gold-500 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-msg">
             
             <div class="px-6 py-4 bg-royal-950 border-b border-gold-500/30 flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center text-lg shadow">
-                        <i class="fa-solid fa-folder-plus"></i>
+                        <i id="adminItemModalIcon" class="fa-solid fa-folder-plus"></i>
                     </div>
                     <div>
-                        <h3 class="text-lg font-black text-white">إضافة مشروع / صور جديدة</h3>
-                        <p class="text-[11px] text-gold-400">صلاحية حصرية للأدمن فقط — تُنشر فوراً بالموقع</p>
+                        <h3 id="adminItemModalTitle" class="text-lg font-black text-white">إضافة عنصر جديد</h3>
+                        <p class="text-[11px] text-gold-400">صلاحية حصرية للأدمن فقط — يتم الحفظ والتحديث فوراً</p>
                     </div>
                 </div>
-                <button onclick="closeAdminAddModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center cursor-pointer">
+                <button onclick="closeAdminItemModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
-            <form onsubmit="handleAdminPublishContent(event)" class="p-6 overflow-y-auto space-y-4">
+            <form onsubmit="handleAdminSaveItem(event)" class="p-6 overflow-y-auto space-y-4">
                 
                 <!-- اختيار القسم المراد الإضافة إليه -->
-                <div>
-                    <label class="block text-xs font-bold text-gold-400 mb-1.5">اختر القسم المراد الإضافة فيه:</label>
+                <div id="adminSectionSelectWrapper">
+                    <label class="block text-xs font-bold text-gold-400 mb-1.5">اختر القسم:</label>
                     <select id="adminTargetSection" onchange="toggleAdminFormFields()" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/40 text-white text-sm font-bold focus:outline-none focus:border-gold-400">
                         <option value="sitePhotos">📸 صور للموقع (أرض المشروع والمخطط)</option>
                         <option value="afterExecution">✨ صور بعد التنفيذ (التشطيبات النهائية)</option>
-                        <option value="units">🏢 الوحدات المتاحة (إضافة وحدة/مشروع للبوت)</option>
-                        <option value="installments">💳 أنظمة التقسيط (إضافة نظام سداد جديد)</option>
+                        <option value="installments">💳 أنظمة التقسيط (خطط السداد)</option>
+                        <option value="unitsInfo">🏢 الوحدات المتاحة</option>
+                        <option value="areasInfo">📐 المساحات المتوفرة</option>
                     </select>
                 </div>
 
-                <!-- عنوان المشروع أو الصورة أو النظام -->
-                <div>
-                    <label id="adminTitleLabel" class="block text-xs font-bold text-slate-300 mb-1">اسم المشروع / وصف الصورة:</label>
-                    <input type="text" id="adminItemTitle" required placeholder="مثال: مشروع حمزاوي بلازا - الواجهة الرئيسية" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                <!-- حقل الشارة (يظهر لأنظمة التقسيط فقط) -->
+                <div id="adminBadgeField" class="hidden">
+                    <label class="block text-xs font-bold text-slate-300 mb-1">تصنيف العرض (الشارة):</label>
+                    <input type="text" id="adminItemBadge" placeholder="مثال: عرض حصري / الأكثر طلباً" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
                 </div>
 
-                <!-- حقل التفاصيل الإضافية (يظهر للوحدات والتقسيط) -->
+                <!-- العنوان الرئيسي -->
+                <div>
+                    <label id="adminTitleLabel" class="block text-xs font-bold text-slate-300 mb-1">اسم المشروع / عنوان الصورة:</label>
+                    <input type="text" id="adminItemTitle" required placeholder="أدخل العنوان هنا..." class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                </div>
+
+                <!-- حقل التفاصيل الإضافية (يظهر للتقسيط والوحدات والمساحات) -->
                 <div id="adminExtraDetailsField" class="hidden space-y-3">
-                    <div>
-                        <label id="adminSubLabel" class="block text-xs font-bold text-slate-300 mb-1">مدة التقسيط / المساحة:</label>
+                    <div id="adminSubFieldWrapper">
+                        <label id="adminSubLabel" class="block text-xs font-bold text-slate-300 mb-1">مدة التقسيط:</label>
                         <input type="text" id="adminItemSub" placeholder="مثال: تقسيط حتى 9 سنوات" class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
                     </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">التفاصيل الكاملة:</label>
-                        <textarea id="adminItemDesc" rows="2" placeholder="اكتب تفاصيل العرض أو مواصفات الوحدة..." class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400"></textarea>
+                    <div id="adminDescFieldWrapper">
+                        <label id="adminDescLabel" class="block text-xs font-bold text-slate-300 mb-1">التفاصيل الكاملة:</label>
+                        <textarea id="adminItemDesc" rows="3" placeholder="اكتب التفاصيل هنا..." class="w-full px-4 py-2.5 rounded-xl bg-royal-950 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400"></textarea>
                     </div>
                 </div>
 
@@ -488,16 +560,91 @@
                     </div>
                 </div>
 
-                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-sm shadow-lg hover:opacity-95 transition-opacity cursor-pointer flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    <span>نشر الآن في الموقع</span>
+                <button type="submit" id="adminSaveSubmitBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-sm shadow-lg hover:opacity-95 transition-opacity cursor-pointer flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span>حفظ ونشر الآن</span>
                 </button>
             </form>
         </div>
     </div>
 
     <!-- ===================================================================== -->
-    <!-- 7. البوت العقاري الذكي (المساعد الافتراضي لحمزاوي العقارية)            -->
+    <!-- 7. لوحة تحكم الأدمن الشاملة (بيانات العملاء المسجلين + تغيير الباسورد) -->
+    <!-- ===================================================================== -->
+    <div id="adminDashboardModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-royal-950/85 backdrop-blur-md">
+        <div class="relative w-full max-w-3xl max-h-[90vh] bg-royal-900 border-2 border-gold-500 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-msg">
+            
+            <div class="px-6 py-4 bg-royal-950 border-b border-gold-500/30 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center text-lg shadow">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-black text-white">لوحة تحكم الأدمن</h3>
+                        <p class="text-[11px] text-gold-400">بيانات العملاء المسجلين وإعدادات الأمان (سرية للأدمن فقط)</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminDashboardModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- تبويبات لوحة الأدمن -->
+            <div class="grid grid-cols-2 bg-royal-950/60 p-1.5 mx-6 mt-4 rounded-xl border border-gold-500/20">
+                <button id="dashTabClients" onclick="switchDashboardTab('clients')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
+                    <i class="fa-solid fa-users ml-1"></i> أرقام وبيانات العملاء
+                </button>
+                <button id="dashTabSecurity" onclick="switchDashboardTab('security')" class="py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all cursor-pointer">
+                    <i class="fa-solid fa-key ml-1"></i> تغيير باسورد الأدمن
+                </button>
+            </div>
+
+            <!-- قسم بيانات العملاء المسجلين -->
+            <div id="dashClientsContainer" class="p-6 overflow-y-auto space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-2 bg-royal-950/70 p-3.5 rounded-2xl border border-gold-500/20">
+                    <span class="text-xs sm:text-sm font-bold text-slate-200">
+                        إجمالي العملاء المسجلين: <strong id="totalClientsLabel" class="text-gold-400 text-base">0</strong> عميل
+                    </span>
+                    <button onclick="clearAllClients()" class="px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white text-xs font-bold transition-colors cursor-pointer">
+                        <i class="fa-solid fa-trash-can ml-1"></i> مسح القائمة بالكامل
+                    </button>
+                </div>
+
+                <div id="clientsListWrapper" class="space-y-2.5">
+                    <!-- يتم تعبئتها ديناميكياً -->
+                </div>
+            </div>
+
+            <!-- قسم تغيير كلمة مرور الأدمن وكود الاسترداد -->
+            <div id="dashSecurityContainer" class="hidden p-6 overflow-y-auto">
+                <form onsubmit="handleAdminChangePassword(event)" class="max-w-md mx-auto space-y-4 bg-royal-950/70 p-5 rounded-2xl border border-gold-500/25">
+                    <h4 class="text-base font-black text-gold-400 flex items-center gap-2">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>تحديث بيانات دخول الأدمن</span>
+                    </h4>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">اسم مستخدم الإدارة</label>
+                        <input type="text" id="editAdminUsername" required class="w-full px-4 py-2.5 rounded-xl bg-royal-900 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">كلمة المرور الجديدة</label>
+                        <input type="password" id="editAdminPassword" required minlength="4" placeholder="أدخل كلمة المرور الجديدة" class="w-full px-4 py-2.5 rounded-xl bg-royal-900 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">كود الاسترداد السري (في حال نسيان الباسورد)</label>
+                        <input type="text" id="editAdminRecovery" required minlength="4" class="w-full px-4 py-2.5 rounded-xl bg-royal-900 border border-gold-500/30 text-white text-sm focus:outline-none focus:border-gold-400">
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-sm shadow-lg hover:opacity-95 cursor-pointer">
+                        حفظ التعديلات
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 8. البوت العقاري الذكي (Mohamed Hossein مستشارك العقاري)               -->
     <!-- ===================================================================== -->
     <button id="chatToggleBtn" onclick="toggleChatbot()" 
             class="fixed bottom-5 right-5 z-40 flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-extrabold shadow-2xl bot-pulse hover:scale-105 transition-transform cursor-pointer">
@@ -505,7 +652,7 @@
             <i class="fa-solid fa-robot text-2xl"></i>
             <span class="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 border-2 border-royal-950 rounded-full"></span>
         </div>
-        <span class="hidden sm:inline text-sm">مساعد حمزاوي الذكي</span>
+        <span class="hidden sm:inline text-sm">Mohamed Hossein مستشارك العقاري</span>
     </button>
 
     <div id="chatbotWindow" class="fixed bottom-20 right-4 left-4 sm:left-auto sm:right-6 z-50 sm:w-[410px] max-h-[80vh] bg-royal-900 border-2 border-gold-500/50 rounded-3xl shadow-2xl hidden flex-col overflow-hidden animate-msg">
@@ -516,8 +663,8 @@
                     <i class="fa-solid fa-robot text-xl"></i>
                 </div>
                 <div>
-                    <h4 class="font-black text-white text-base flex items-center gap-2">
-                        مستشار حمزاوي العقاري
+                    <h4 class="font-black text-white text-sm sm:text-base flex items-center gap-2">
+                        Mohamed Hossein مستشارك العقاري
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
                     </h4>
                     <p class="text-xs text-gold-400 font-medium">متاح الآن للرد على استفساراتك</p>
@@ -561,31 +708,33 @@
     </div>
 
     <!-- ===================================================================== -->
-    <!-- 8. كود الجافاسكريبت الشامل                                            -->
+    <!-- 9. كود الجافاسكريبت الشامل                                            -->
     <!-- ===================================================================== -->
     <script>
         /**
          * ====================================================================
-         * قاعدة بيانات موقع حمزاوي العقارية (HAMZAWY_DATA)
-         * قابلة للتعديل بسهولة من الكود أو مباشرة من لوحة تحكم الأدمن في الموقع
+         * البيانات الافتراضية لموقع Mohamed Hossein مستشارك العقاري
          * ====================================================================
          */
-        const HAMZAWY_DATA = {
+        const DEFAULT_SITE_DATA = {
             adminCredentials: {
                 username: "admin",
-                password: "1234"
+                password: "1234",
+                recoveryCode: "MH2026"
             },
             contact: {
-                salesPhone: "01000000000",
-                salesPhoneDisplay: "0100 000 0000",
-                whatsappNumber: "201000000000",
-                whatsappDisplay: "0100 000 0000",
+                salesPhone: "01151997989",
+                salesPhoneDisplay: "01151997989",
+                whatsappNumber: "201151997989",
+                whatsappDisplay: "01151997989",
                 facebookUrl: "https://www.facebook.com",
-                facebookName: "صفحة حمزاوي العقارية الرسمية"
+                facebookName: "Mohamed Hossein مستشارك العقاري"
             },
             unitsInfo: {
-                title: "الوحدات المتاحة حالياً في مشاريع حمزاوي العقارية",
-                description: "نوفر باقة متنوعة من الوحدات السكنية والتجارية المصممة بأعلى معايير الفخامة:",
+                title: "الوحدات المتاحة حالياً",
+                subtitle: "باقة متنوعة من الوحدات السكنية والتجارية بأعلى معايير الفخامة",
+                icon: "fa-building",
+                intro: "مع Mohamed Hossein مستشارك العقاري، نوفر لك أفضل الوحدات السكنية والتجارية في أرقى المواقع:",
                 items: [
                     { name: "شقق سكنية فاخرة", details: "غرفتين و3 غرف نوم بتصميمات عصرية وإطلالات مفتوحة." },
                     { name: "وحدات دوبلكس (Duplex)", details: "بحديقة خاصة ومدخل مستقل لعشاق الخصوصية." },
@@ -595,7 +744,9 @@
             },
             areasInfo: {
                 title: "المساحات المتوفرة والمخططات الهندسية",
-                description: "تتنوع المساحات لدينا لتناسب كافة احتياجات الأسرة والاستثمار:",
+                subtitle: "تنوع في المساحات يناسب كافة احتياجات الأسرة والاستثمار",
+                icon: "fa-ruler-combined",
+                intro: "اختر المساحة المناسبة لك ولأسرتك مع تقسيمات داخلية مدروسة بعناية:",
                 items: [
                     { range: "من 120 م² إلى 155 م²", type: "شقق سكنية (غرفتين / 3 غرف)" },
                     { range: "من 165 م² إلى 220 م²", type: "شقق كبيرة وريسبشن واسع" },
@@ -607,7 +758,7 @@
                 title: "أنظمة التقسيط والسداد",
                 subtitle: "خطط مرنة تناسب ميزانيتك بدون أي فوائد بنكية",
                 icon: "fa-hand-holding-dollar",
-                intro: "في شركة حمزاوي العقارية، نحرص على تقديم أسهل أنظمة السداد وأطول فترات تقسيط لتملك وحدتك بكل راحة وأمان.",
+                intro: "مع Mohamed Hossein مستشارك العقاري، نحرص على تقديم أسهل أنظمة السداد وأطول فترات تقسيط لتملك وحدتك بكل راحة وأمان.",
                 plans: [
                     {
                         badge: "النظام الأول (الأكثر طلباً)",
@@ -628,7 +779,7 @@
                         details: "مخصص للوحدات الجاهزة للاستلام الفوري والمعاينة على أرض الواقع."
                     }
                 ],
-                note: "* خصم خاص ومميز جداً للدفع الكاش — تواصل مع إدارة المبيعات لمعرفة تفاصيل العروض الحالية."
+                note: "* خصم خاص ومميز جداً للدفع الكاش — تواصل مع المبيعات على 01151997989 لمعرفة تفاصيل العروض الحالية."
             },
             sitePhotos: {
                 title: "صور للموقع وأرض المشروع",
@@ -656,7 +807,7 @@
             },
             afterExecution: {
                 title: "صور بعد التنفيذ والتشطيب النهائي",
-                subtitle: "جودة التنفيذ الفاخرة من سابقة أعمال حمزاوي العقارية",
+                subtitle: "جودة التنفيذ الفاخرة من سابقة أعمال Mohamed Hossein مستشارك العقاري",
                 icon: "fa-wand-magic-sparkles",
                 intro: "نلتزم بتسليم وحداتنا بأرقى الخامات والتشطيبات العصرية التي تجمع بين الفخامة والعملية. شاهد نماذج حية بعد التنفيذ:",
                 gallery: [
@@ -680,29 +831,57 @@
             }
         };
 
+        // تحميل البيانات المحفوظة من localStorage أو استخدام الافتراضية
+        let SITE_DATA = JSON.parse(localStorage.getItem('mh_real_estate_data')) || JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
+        let REGISTERED_CLIENTS = JSON.parse(localStorage.getItem('mh_registered_clients')) || [];
+
+        // تأكيد توحيد رقم التواصل واسم المستشار العقاري دائماً
+        SITE_DATA.contact.salesPhone = "01151997989";
+        SITE_DATA.contact.salesPhoneDisplay = "01151997989";
+        SITE_DATA.contact.whatsappNumber = "201151997989";
+        SITE_DATA.contact.whatsappDisplay = "01151997989";
+
+        function saveSiteData() {
+            localStorage.setItem('mh_real_estate_data', JSON.stringify(SITE_DATA));
+        }
+
+        function saveClientsData() {
+            localStorage.setItem('mh_registered_clients', JSON.stringify(REGISTERED_CLIENTS));
+            updateClientsCountBadge();
+        }
+
+        function updateClientsCountBadge() {
+            const badge = document.getElementById('bannerClientsCount');
+            if (badge) badge.textContent = REGISTERED_CLIENTS.length;
+        }
+
         /* ==================================================================== */
         /* حالة المستخدمين والصلاحيات (زائر / عميل / أدمن)                      */
         /* ==================================================================== */
-        let currentUser = null; // { role: 'client' | 'admin', name: string, email?: string }
-        let clientAuthMode = 'login'; // 'login' | 'register'
+        let currentUser = JSON.parse(sessionStorage.getItem('mh_current_user')) || null;
         let uploadedImageDataUrl = '';
         let currentOpenSectionKey = null;
+        let adminEditState = { mode: 'add', section: 'sitePhotos', index: null };
 
-        // تحديث أزرار الهيدر وشريط الأدمن حسب حالة الدخول
         function renderAuthUI() {
             const controls = document.getElementById('authHeaderControls');
             const adminBanner = document.getElementById('adminBanner');
             const modalQuickAdd = document.getElementById('modalAdminQuickAddBtn');
+            const adminCardControls = document.querySelectorAll('.admin-only-control');
+
+            updateClientsCountBadge();
 
             if (!currentUser) {
                 // زائر غير مسجل
                 adminBanner.classList.add('hidden');
                 if (modalQuickAdd) modalQuickAdd.classList.add('hidden');
+                adminCardControls.forEach(el => { el.classList.add('hidden'); el.classList.remove('flex'); });
+
                 controls.innerHTML = `
                     <button onclick="openAuthModal('client')" 
                             class="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs sm:text-sm font-bold transition-colors cursor-pointer">
                         <i class="fa-solid fa-user text-gold-400"></i>
-                        <span>دخول العملاء</span>
+                        <span>تسجيل العملاء</span>
                     </button>
                     <button onclick="openAuthModal('admin')" 
                             class="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-gold-500/20 hover:bg-gold-500 text-gold-300 hover:text-royal-950 border border-gold-500/50 text-xs sm:text-sm font-extrabold transition-colors cursor-pointer">
@@ -711,31 +890,39 @@
                     </button>
                 `;
             } else if (currentUser.role === 'client') {
-                // عميل مسجل بحسابه (لا يرى أيقونة الإضافة الخاصة بالأدمن)
+                // عميل مسجل (يرى اسمه فقط ولا يرى أي أدوات إدارية أو أرقام عملاء)
                 adminBanner.classList.add('hidden');
                 if (modalQuickAdd) modalQuickAdd.classList.add('hidden');
+                adminCardControls.forEach(el => { el.classList.add('hidden'); el.classList.remove('flex'); });
+
                 controls.innerHTML = `
                     <div class="flex items-center gap-2 bg-royal-800 border border-gold-500/30 px-3 py-1.5 rounded-xl">
                         <i class="fa-solid fa-circle-user text-gold-400 text-base"></i>
-                        <span class="text-xs font-bold text-white max-w-[110px] truncate">${escapeHTML(currentUser.name)}</span>
+                        <span class="text-xs font-bold text-white max-w-[130px] truncate">${escapeHTML(currentUser.name)}</span>
                         <button onclick="logoutUser()" title="تسجيل الخروج" class="text-red-400 hover:text-red-300 text-xs mr-1 cursor-pointer">
                             <i class="fa-solid fa-right-from-bracket"></i>
                         </button>
                     </div>
                 `;
             } else if (currentUser.role === 'admin') {
-                // الأدمن مسجل الدخول: تظهر له علامة/زر (+) الحصري لإضافة المشاريع والصور
+                // الأدمن مسجل الدخول: تظهر له جميع صلاحيات الإضافة والتعديل والحذف وبيانات العملاء
                 adminBanner.classList.remove('hidden');
+                adminCardControls.forEach(el => { el.classList.remove('hidden'); el.classList.add('flex'); });
                 if (modalQuickAdd) {
                     modalQuickAdd.classList.remove('hidden');
                     modalQuickAdd.classList.add('flex');
                 }
                 controls.innerHTML = `
-                    <button onclick="openAdminAddModal()" 
-                            title="إضافة مشروع أو صور جديدة (للأدمن فقط)"
+                    <button onclick="openAdminDashboardModal('clients')" 
+                            class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-royal-800 hover:bg-royal-700 text-gold-400 border border-gold-500/50 font-extrabold text-xs sm:text-sm shadow cursor-pointer">
+                        <i class="fa-solid fa-users-gear"></i>
+                        <span class="hidden sm:inline">لوحة الإدارة</span>
+                    </button>
+                    <button onclick="openAdminItemModal('add')" 
+                            title="إضافة عنصر جديد (للأدمن فقط)"
                             class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-royal-950 font-black text-xs sm:text-sm shadow-lg hover:scale-105 transition-transform cursor-pointer">
                         <i class="fa-solid fa-circle-plus text-base"></i>
-                        <span>إضافة مشروع / صور</span>
+                        <span>إضافة</span>
                     </button>
                     <button onclick="logoutUser()" title="خروج الأدمن" class="w-9 h-9 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/40 flex items-center justify-center transition-colors cursor-pointer">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -753,6 +940,7 @@
         function closeAuthModal() {
             document.getElementById('authModal').classList.add('hidden');
             document.getElementById('authModal').classList.remove('flex');
+            toggleForgotAdminPass(false);
         }
 
         function switchAuthTab(tab) {
@@ -767,53 +955,70 @@
                 adminContainer.classList.add('hidden');
                 tabClientBtn.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold bg-gold-500 text-royal-950 shadow cursor-pointer";
                 tabAdminBtn.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold text-slate-300 hover:text-white cursor-pointer";
-                title.textContent = "بوابة العملاء";
+                title.textContent = "تسجيل دخول العملاء";
             } else {
                 clientContainer.classList.add('hidden');
                 adminContainer.classList.remove('hidden');
                 tabAdminBtn.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold bg-gold-500 text-royal-950 shadow cursor-pointer";
                 tabClientBtn.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold text-slate-300 hover:text-white cursor-pointer";
                 title.textContent = "دخول الإدارة (Admin)";
+                toggleForgotAdminPass(false);
             }
         }
 
-        function toggleClientMode(mode) {
-            clientAuthMode = mode;
-            const nameField = document.getElementById('clientNameField');
-            const submitBtn = document.getElementById('clientSubmitBtn');
-            const loginTab = document.getElementById('clientSubTabLogin');
-            const regTab = document.getElementById('clientSubTabRegister');
-
-            if (mode === 'register') {
-                nameField.classList.remove('hidden');
-                document.getElementById('clientNameInput').required = true;
-                submitBtn.textContent = "إنشاء الحساب والدخول";
-                regTab.className = "text-gold-400 border-b-2 border-gold-400 pb-1 cursor-pointer";
-                loginTab.className = "text-slate-400 hover:text-white pb-1 cursor-pointer";
-            } else {
-                nameField.classList.add('hidden');
-                document.getElementById('clientNameInput').required = false;
-                submitBtn.textContent = "دخول إلى حسابي";
-                loginTab.className = "text-gold-400 border-b-2 border-gold-400 pb-1 cursor-pointer";
-                regTab.className = "text-slate-400 hover:text-white pb-1 cursor-pointer";
-            }
-        }
-
+        // تسجيل دخول العميل بالاسم الثنائي ورقم الهاتف فقط
         function handleClientAuthSubmit(e) {
             e.preventDefault();
-            const email = document.getElementById('clientEmailInput').value.trim();
-            const nameInput = document.getElementById('clientNameInput').value.trim();
-            const displayName = (clientAuthMode === 'register' && nameInput) ? nameInput : email.split('@')[0];
+            const fullName = document.getElementById('clientFullNameInput').value.trim().replace(/\s+/g, ' ');
+            const phone = document.getElementById('clientPhoneInput').value.trim();
+
+            // التحقق من الاسم الثنائي (كلمتين على الأقل)
+            const nameParts = fullName.split(' ');
+            if (nameParts.length < 2 || nameParts[0].length < 2 || nameParts[1].length < 2) {
+                showToast("يرجى إدخال الاسم الثنائي بشكل صحيح (مثال: أحمد محمود)", true);
+                return;
+            }
+
+            // التحقق من رقم الهاتف (11 رقم يبدأ بـ 01)
+            const phoneRegex = /^01[0125][0-9]{8}$/;
+            if (!phoneRegex.test(phone)) {
+                showToast("يرجى إدخال رقم هاتف صحيح مكون من 11 رقم (يبدأ بـ 01)", true);
+                return;
+            }
+
+            // حفظ أو تحديث بيانات العميل في قائمة الأدمن السرية
+            const nowStr = new Date().toLocaleString('ar-EG', {
+                year: 'numeric', month: 'short', day: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+
+            const existingIndex = REGISTERED_CLIENTS.findIndex(c => c.phone === phone);
+            if (existingIndex !== -1) {
+                REGISTERED_CLIENTS[existingIndex].name = fullName;
+                REGISTERED_CLIENTS[existingIndex].lastLogin = nowStr;
+            } else {
+                REGISTERED_CLIENTS.unshift({
+                    id: Date.now(),
+                    name: fullName,
+                    phone: phone,
+                    registeredAt: nowStr,
+                    lastLogin: nowStr
+                });
+            }
+            saveClientsData();
 
             currentUser = {
                 role: 'client',
-                name: displayName,
-                email: email
+                name: fullName,
+                phone: phone
             };
+            sessionStorage.setItem('mh_current_user', JSON.stringify(currentUser));
 
+            document.getElementById('clientFullNameInput').value = '';
+            document.getElementById('clientPhoneInput').value = '';
             closeAuthModal();
             renderAuthUI();
-            showToast(clientAuthMode === 'register' ? `أهلاً بك ${displayName}! تم إنشاء حسابك بنجاح` : `مرحباً بعودتك ${displayName}`);
+            showToast(`أهلاً بك يا ${fullName} في Mohamed Hossein مستشارك العقاري!`);
         }
 
         function handleAdminLoginSubmit(e) {
@@ -821,72 +1026,282 @@
             const user = document.getElementById('adminUserInput').value.trim();
             const pass = document.getElementById('adminPassInput').value.trim();
 
-            if (user === HAMZAWY_DATA.adminCredentials.username && pass === HAMZAWY_DATA.adminCredentials.password) {
+            if (user === SITE_DATA.adminCredentials.username && pass === SITE_DATA.adminCredentials.password) {
                 currentUser = {
                     role: 'admin',
-                    name: 'المدير العام'
+                    name: 'Mohamed Hossein'
                 };
+                sessionStorage.setItem('mh_current_user', JSON.stringify(currentUser));
+                document.getElementById('adminPassInput').value = '';
                 closeAuthModal();
                 renderAuthUI();
-                showToast("تم تسجيل دخول الأدمن بنجاح — أيقونة الإضافة متاحة الآن");
+                if (currentOpenSectionKey) openSectionModal(currentOpenSectionKey);
+                showToast("تم تسجيل دخول الأدمن بنجاح — جميع صلاحيات التعديل والإضافة مفعّلة");
             } else {
-                showToast("بيانات الإدارة غير صحيحة (جرب admin / 1234)", true);
+                showToast("بيانات الإدارة غير صحيحة! تأكد من الاسم وكلمة المرور", true);
             }
+        }
+
+        function toggleForgotAdminPass(showForgot) {
+            const loginForm = document.getElementById('adminLoginForm');
+            const forgotForm = document.getElementById('adminForgotForm');
+            if (showForgot) {
+                loginForm.classList.add('hidden');
+                forgotForm.classList.remove('hidden');
+            } else {
+                forgotForm.classList.add('hidden');
+                loginForm.classList.remove('hidden');
+            }
+        }
+
+        function handleAdminResetPassword(e) {
+            e.preventDefault();
+            const recoveryInput = document.getElementById('adminRecoveryCodeInput').value.trim();
+            const newPass = document.getElementById('adminNewResetPassInput').value.trim();
+
+            if (recoveryInput !== SITE_DATA.adminCredentials.recoveryCode) {
+                showToast("كود الاسترداد غير صحيح!", true);
+                return;
+            }
+
+            SITE_DATA.adminCredentials.password = newPass;
+            saveSiteData();
+
+            document.getElementById('adminRecoveryCodeInput').value = '';
+            document.getElementById('adminNewResetPassInput').value = '';
+            toggleForgotAdminPass(false);
+            showToast("تم تغيير كلمة مرور الأدمن بنجاح! يمكنك الدخول الآن");
         }
 
         function logoutUser() {
             currentUser = null;
+            sessionStorage.removeItem('mh_current_user');
             renderAuthUI();
+            if (currentOpenSectionKey) openSectionModal(currentOpenSectionKey);
             showToast("تم تسجيل الخروج بنجاح");
         }
 
         /* ==================================================================== */
-        /* نافذة الأدمن لإضافة مشاريع وصور جديدة                                */
+        /* لوحة تحكم الأدمن (عرض أرقام العملاء + تغيير الباسورد)               */
         /* ==================================================================== */
-        function openAdminAddModal() {
+        function openAdminDashboardModal(tab = 'clients') {
             if (!currentUser || currentUser.role !== 'admin') return;
+            document.getElementById('adminDashboardModal').classList.remove('hidden');
+            document.getElementById('adminDashboardModal').classList.add('flex');
+            switchDashboardTab(tab);
+        }
+
+        function closeAdminDashboardModal() {
+            document.getElementById('adminDashboardModal').classList.add('hidden');
+            document.getElementById('adminDashboardModal').classList.remove('flex');
+        }
+
+        function switchDashboardTab(tab) {
+            const clientsContainer = document.getElementById('dashClientsContainer');
+            const securityContainer = document.getElementById('dashSecurityContainer');
+            const tabClients = document.getElementById('dashTabClients');
+            const tabSecurity = document.getElementById('dashTabSecurity');
+
+            if (tab === 'clients') {
+                clientsContainer.classList.remove('hidden');
+                securityContainer.classList.add('hidden');
+                tabClients.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold bg-gold-500 text-royal-950 shadow cursor-pointer";
+                tabSecurity.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold text-slate-300 hover:text-white cursor-pointer";
+                renderClientsList();
+            } else {
+                clientsContainer.classList.add('hidden');
+                securityContainer.classList.remove('hidden');
+                tabSecurity.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold bg-gold-500 text-royal-950 shadow cursor-pointer";
+                tabClients.className = "py-2 rounded-lg text-xs sm:text-sm font-extrabold text-slate-300 hover:text-white cursor-pointer";
+                document.getElementById('editAdminUsername').value = SITE_DATA.adminCredentials.username;
+                document.getElementById('editAdminPassword').value = SITE_DATA.adminCredentials.password;
+                document.getElementById('editAdminRecovery').value = SITE_DATA.adminCredentials.recoveryCode;
+            }
+        }
+
+        function renderClientsList() {
+            const wrapper = document.getElementById('clientsListWrapper');
+            const totalLabel = document.getElementById('totalClientsLabel');
+            totalLabel.textContent = REGISTERED_CLIENTS.length;
+
+            if (REGISTERED_CLIENTS.length === 0) {
+                wrapper.innerHTML = `
+                    <div class="text-center py-10 bg-royal-950/50 rounded-2xl border border-white/10 text-slate-400 text-sm">
+                        <i class="fa-solid fa-user-clock text-3xl text-gold-400/50 mb-2 block"></i>
+                        لا يوجد عملاء مسجلون حتى الآن. سيظهر هنا اسم ورقم هاتف كل عميل يسجل دخوله.
+                    </div>
+                `;
+                return;
+            }
+
+            wrapper.innerHTML = REGISTERED_CLIENTS.map((client, index) => `
+                <div class="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-royal-950 border border-gold-500/25 hover:border-gold-400/60 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 font-black flex items-center justify-center text-sm">
+                            ${index + 1}
+                        </div>
+                        <div>
+                            <h5 class="font-black text-white text-sm sm:text-base">${escapeHTML(client.name)}</h5>
+                            <p class="text-xs text-slate-400 mt-0.5">
+                                <i class="fa-regular fa-clock ml-1 text-gold-400"></i> آخر دخول: ${escapeHTML(client.lastLogin || client.registeredAt)}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a href="tel:${escapeHTML(client.phone)}" dir="ltr" class="px-3 py-1.5 rounded-xl bg-royal-800 hover:bg-gold-500 text-gold-300 hover:text-royal-950 font-bold text-xs sm:text-sm transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>${escapeHTML(client.phone)}</span>
+                        </a>
+                        <a href="https://wa.me/2${escapeHTML(client.phone)}" target="_blank" title="مراسلة واتساب" class="w-9 h-9 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                        </a>
+                        <button onclick="deleteClientRecord(${index})" title="حذف العميل" class="w-9 h-9 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function deleteClientRecord(index) {
+            if (!confirm("هل أنت متأكد من حذف بيانات هذا العميل؟")) return;
+            REGISTERED_CLIENTS.splice(index, 1);
+            saveClientsData();
+            renderClientsList();
+            showToast("تم حذف سجل العميل");
+        }
+
+        function clearAllClients() {
+            if (REGISTERED_CLIENTS.length === 0) return;
+            if (!confirm("هل أنت متأكد من مسح جميع بيانات العملاء المسجلين؟")) return;
+            REGISTERED_CLIENTS = [];
+            saveClientsData();
+            renderClientsList();
+            showToast("تم مسح قائمة العملاء بالكامل");
+        }
+
+        function handleAdminChangePassword(e) {
+            e.preventDefault();
+            const newUser = document.getElementById('editAdminUsername').value.trim();
+            const newPass = document.getElementById('editAdminPassword').value.trim();
+            const newRec = document.getElementById('editAdminRecovery').value.trim();
+
+            SITE_DATA.adminCredentials.username = newUser;
+            SITE_DATA.adminCredentials.password = newPass;
+            SITE_DATA.adminCredentials.recoveryCode = newRec;
+            saveSiteData();
+
+            showToast("تم تحديث اسم المستخدم وكلمة المرور وكود الاسترداد بنجاح!");
+        }
+
+        /* ==================================================================== */
+        /* نافذة الأدمن لإضافة أو تعديل أو حذف عناصر في كل قسم                  */
+        /* ==================================================================== */
+        function openAdminItemModal(mode = 'add', sectionKey = null, itemIndex = null) {
+            if (!currentUser || currentUser.role !== 'admin') return;
+
+            const targetSection = sectionKey || currentOpenSectionKey || 'sitePhotos';
+            adminEditState = { mode, section: targetSection, index: itemIndex };
+
             uploadedImageDataUrl = '';
             document.getElementById('adminItemTitle').value = '';
+            document.getElementById('adminItemBadge').value = '';
             document.getElementById('adminItemSub').value = '';
             document.getElementById('adminItemDesc').value = '';
             document.getElementById('adminImageUrlInput').value = '';
             document.getElementById('adminImagePreviewBox').classList.add('hidden');
-            
-            if (currentOpenSectionKey) {
-                document.getElementById('adminTargetSection').value = currentOpenSectionKey;
+
+            const sectionSelect = document.getElementById('adminTargetSection');
+            const sectionSelectWrapper = document.getElementById('adminSectionSelectWrapper');
+            sectionSelect.value = targetSection;
+
+            if (mode === 'edit') {
+                document.getElementById('adminItemModalTitle').textContent = "تعديل العنصر";
+                document.getElementById('adminItemModalIcon').className = "fa-solid fa-pen-to-square";
+                sectionSelectWrapper.classList.add('hidden');
+            } else {
+                document.getElementById('adminItemModalTitle').textContent = "إضافة عنصر جديد";
+                document.getElementById('adminItemModalIcon').className = "fa-solid fa-folder-plus";
+                sectionSelectWrapper.classList.remove('hidden');
             }
+
             toggleAdminFormFields();
 
-            document.getElementById('adminAddModal').classList.remove('hidden');
-            document.getElementById('adminAddModal').classList.add('flex');
+            // تعبئة البيانات الحالية في حالة التعديل
+            if (mode === 'edit' && itemIndex !== null) {
+                if (targetSection === 'sitePhotos' || targetSection === 'afterExecution') {
+                    const item = SITE_DATA[targetSection].gallery[itemIndex];
+                    document.getElementById('adminItemTitle').value = item.caption || '';
+                    document.getElementById('adminImageUrlInput').value = item.url || '';
+                    if (item.url) {
+                        document.getElementById('adminImagePreview').src = item.url;
+                        document.getElementById('adminImagePreviewBox').classList.remove('hidden');
+                    }
+                } else if (targetSection === 'installments') {
+                    const plan = SITE_DATA.installments.plans[itemIndex];
+                    document.getElementById('adminItemBadge').value = plan.badge || '';
+                    document.getElementById('adminItemTitle').value = plan.title || '';
+                    document.getElementById('adminItemSub').value = plan.duration || '';
+                    document.getElementById('adminItemDesc').value = plan.details || '';
+                } else if (targetSection === 'unitsInfo') {
+                    const unit = SITE_DATA.unitsInfo.items[itemIndex];
+                    document.getElementById('adminItemTitle').value = unit.name || '';
+                    document.getElementById('adminItemDesc').value = unit.details || '';
+                } else if (targetSection === 'areasInfo') {
+                    const area = SITE_DATA.areasInfo.items[itemIndex];
+                    document.getElementById('adminItemTitle').value = area.range || '';
+                    document.getElementById('adminItemDesc').value = area.type || '';
+                }
+            }
+
+            document.getElementById('adminItemModal').classList.remove('hidden');
+            document.getElementById('adminItemModal').classList.add('flex');
         }
 
-        function closeAdminAddModal() {
-            document.getElementById('adminAddModal').classList.add('hidden');
-            document.getElementById('adminAddModal').classList.remove('flex');
+        function closeAdminItemModal() {
+            document.getElementById('adminItemModal').classList.add('hidden');
+            document.getElementById('adminItemModal').classList.remove('flex');
         }
 
         function toggleAdminFormFields() {
-            const target = document.getElementById('adminTargetSection').value;
+            const target = adminEditState.mode === 'edit'
+                ? adminEditState.section
+                : document.getElementById('adminTargetSection').value;
+
             const imgField = document.getElementById('adminImageUploadField');
             const extraField = document.getElementById('adminExtraDetailsField');
+            const badgeField = document.getElementById('adminBadgeField');
+            const subFieldWrapper = document.getElementById('adminSubFieldWrapper');
             const titleLabel = document.getElementById('adminTitleLabel');
             const subLabel = document.getElementById('adminSubLabel');
+            const descLabel = document.getElementById('adminDescLabel');
+
+            badgeField.classList.add('hidden');
+            subFieldWrapper.classList.remove('hidden');
 
             if (target === 'sitePhotos' || target === 'afterExecution') {
                 imgField.classList.remove('hidden');
                 extraField.classList.add('hidden');
-                titleLabel.textContent = "اسم المشروع / عنوان الصورة:";
-            } else if (target === 'units') {
-                imgField.classList.add('hidden');
-                extraField.classList.remove('hidden');
-                titleLabel.textContent = "اسم المشروع أو نوع الوحدة الجديدة:";
-                subLabel.textContent = "المساحات المتوفرة في هذا المشروع:";
+                titleLabel.textContent = "عنوان / وصف الصورة:";
             } else if (target === 'installments') {
                 imgField.classList.add('hidden');
                 extraField.classList.remove('hidden');
-                titleLabel.textContent = "نسبة المقدم (مثال: مقدم 5% فقط):";
-                subLabel.textContent = "مدة التقسيط (مثال: تقسيط حتى 10 سنوات):";
+                badgeField.classList.remove('hidden');
+                titleLabel.textContent = "نسبة المقدم (مثال: مقدم 10% فقط):";
+                subLabel.textContent = "مدة التقسيط (مثال: تقسيط حتى 8 سنوات):";
+                descLabel.textContent = "تفاصيل نظام السداد:";
+            } else if (target === 'unitsInfo') {
+                imgField.classList.add('hidden');
+                extraField.classList.remove('hidden');
+                subFieldWrapper.classList.add('hidden');
+                titleLabel.textContent = "نوع الوحدة / اسم المشروع:";
+                descLabel.textContent = "مواصفات وتفاصيل الوحدة:";
+            } else if (target === 'areasInfo') {
+                imgField.classList.add('hidden');
+                extraField.classList.remove('hidden');
+                subFieldWrapper.classList.add('hidden');
+                titleLabel.textContent = "نطاق المساحة (مثال: من 150 م² إلى 200 م²):";
+                descLabel.textContent = "نوع الوحدات المتوفرة بهذه المساحة:";
             }
         }
 
@@ -903,51 +1318,95 @@
             reader.readAsDataURL(file);
         }
 
-        function handleAdminPublishContent(e) {
+        function handleAdminSaveItem(e) {
             e.preventDefault();
             if (!currentUser || currentUser.role !== 'admin') return;
 
-            const target = document.getElementById('adminTargetSection').value;
+            const target = adminEditState.mode === 'edit'
+                ? adminEditState.section
+                : document.getElementById('adminTargetSection').value;
+
             const title = document.getElementById('adminItemTitle').value.trim();
+            const badge = document.getElementById('adminItemBadge').value.trim();
             const sub = document.getElementById('adminItemSub').value.trim();
             const desc = document.getElementById('adminItemDesc').value.trim();
             const urlInput = document.getElementById('adminImageUrlInput').value.trim();
 
             if (target === 'sitePhotos' || target === 'afterExecution') {
                 const finalImgUrl = uploadedImageDataUrl || urlInput || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
-                HAMZAWY_DATA[target].gallery.unshift({
-                    url: finalImgUrl,
-                    caption: title
-                });
-                closeAdminAddModal();
-                showToast("تم نشر الصورة الجديدة بنجاح!");
-                openSectionModal(target);
-            } else if (target === 'units') {
-                HAMZAWY_DATA.unitsInfo.items.unshift({
-                    name: title,
-                    details: `${sub ? sub + ' — ' : ''}${desc || 'متاح الآن للحجز والاستفسار.'}`
-                });
-                closeAdminAddModal();
-                showToast("تمت إضافة الوحدة/المشروع الجديد إلى البوت!");
-                triggerBotFromHeader('units');
+                const obj = { url: finalImgUrl, caption: title };
+
+                if (adminEditState.mode === 'edit') {
+                    SITE_DATA[target].gallery[adminEditState.index] = obj;
+                } else {
+                    SITE_DATA[target].gallery.unshift(obj);
+                }
             } else if (target === 'installments') {
-                HAMZAWY_DATA.installments.plans.unshift({
-                    badge: "عرض جديد من الإدارة",
+                const obj = {
+                    badge: badge || "عرض حصري",
                     title: title,
                     duration: sub || "تسهيلات مرنة",
                     details: desc || "بدون فوائد وبأقل مقدم تعاقد."
-                });
-                closeAdminAddModal();
-                showToast("تمت إضافة نظام التقسيط الجديد بنجاح!");
-                openSectionModal('installments');
+                };
+                if (adminEditState.mode === 'edit') {
+                    SITE_DATA.installments.plans[adminEditState.index] = obj;
+                } else {
+                    SITE_DATA.installments.plans.unshift(obj);
+                }
+            } else if (target === 'unitsInfo') {
+                const obj = {
+                    name: title,
+                    details: desc || "متاح الآن للحجز والاستفسار."
+                };
+                if (adminEditState.mode === 'edit') {
+                    SITE_DATA.unitsInfo.items[adminEditState.index] = obj;
+                } else {
+                    SITE_DATA.unitsInfo.items.unshift(obj);
+                }
+            } else if (target === 'areasInfo') {
+                const obj = {
+                    range: title,
+                    type: desc || "وحدات متنوعة بتصميمات عصرية."
+                };
+                if (adminEditState.mode === 'edit') {
+                    SITE_DATA.areasInfo.items[adminEditState.index] = obj;
+                } else {
+                    SITE_DATA.areasInfo.items.unshift(obj);
+                }
             }
+
+            saveSiteData();
+            closeAdminItemModal();
+            showToast(adminEditState.mode === 'edit' ? "تم تعديل العنصر بنجاح!" : "تمت الإضافة بنجاح!");
+            openSectionModal(target);
+        }
+
+        function deleteAdminItem(sectionKey, index) {
+            if (!currentUser || currentUser.role !== 'admin') return;
+            if (!confirm("هل أنت متأكد من حذف هذا العنصر نهائياً؟")) return;
+
+            if (sectionKey === 'sitePhotos' || sectionKey === 'afterExecution') {
+                SITE_DATA[sectionKey].gallery.splice(index, 1);
+            } else if (sectionKey === 'installments') {
+                SITE_DATA.installments.plans.splice(index, 1);
+            } else if (sectionKey === 'unitsInfo') {
+                SITE_DATA.unitsInfo.items.splice(index, 1);
+            } else if (sectionKey === 'areasInfo') {
+                SITE_DATA.areasInfo.items.splice(index, 1);
+            }
+
+            saveSiteData();
+            showToast("تم حذف العنصر بنجاح");
+            openSectionModal(sectionKey);
         }
 
         /* ==================================================================== */
-        /* دوال النوافذ المنبثقة للأقسام الثلاثة                                 */
+        /* دوال النوافذ المنبثقة للأقسام (التقسيط / الصور / الوحدات / المساحات)  */
         /* ==================================================================== */
         function openSectionModal(sectionKey) {
             currentOpenSectionKey = sectionKey;
+            const isAdmin = currentUser && currentUser.role === 'admin';
+
             const modal = document.getElementById('sectionModal');
             const titleEl = document.getElementById('modalTitle');
             const subtitleEl = document.getElementById('modalSubtitle');
@@ -956,27 +1415,39 @@
             const contactBtnsEl = document.getElementById('modalContactButtons');
             const modalQuickAdd = document.getElementById('modalAdminQuickAddBtn');
 
-            if (currentUser && currentUser.role === 'admin') {
+            if (isAdmin) {
                 modalQuickAdd.classList.remove('hidden');
                 modalQuickAdd.classList.add('flex');
             } else {
                 modalQuickAdd.classList.add('hidden');
+                modalQuickAdd.classList.remove('flex');
             }
 
-            const data = HAMZAWY_DATA[sectionKey];
+            const data = SITE_DATA[sectionKey];
             if (!data) return;
 
             titleEl.textContent = data.title;
-            subtitleEl.textContent = data.subtitle;
-            iconBox.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+            subtitleEl.textContent = data.subtitle || "Mohamed Hossein مستشارك العقاري";
+            iconBox.innerHTML = `<i class="fa-solid ${data.icon || 'fa-building'}"></i>`;
 
-            let htmlContent = `<p class="text-slate-200 text-base sm:text-lg leading-relaxed bg-royal-950/60 p-4 rounded-2xl border border-gold-500/20">${data.intro}</p>`;
+            let htmlContent = `<p class="text-slate-200 text-base sm:text-lg leading-relaxed bg-royal-950/60 p-4 rounded-2xl border border-gold-500/20">${escapeHTML(data.intro)}</p>`;
 
+            // 1. قسم أنظمة التقسيط
             if (sectionKey === 'installments') {
                 htmlContent += `<div class="grid grid-cols-1 md:grid-cols-3 gap-4">`;
-                data.plans.forEach(plan => {
+                data.plans.forEach((plan, idx) => {
                     htmlContent += `
-                        <div class="bg-royal-950 border border-gold-500/35 rounded-2xl p-5 flex flex-col justify-between hover:border-gold-400 transition-all shadow-lg">
+                        <div class="relative bg-royal-950 border border-gold-500/35 rounded-2xl p-5 flex flex-col justify-between hover:border-gold-400 transition-all shadow-lg">
+                            ${isAdmin ? `
+                                <div class="flex items-center justify-end gap-1.5 mb-3 pb-2 border-b border-white/10">
+                                    <button onclick="openAdminItemModal('edit', 'installments', ${idx})" title="تعديل" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-royal-950 text-xs font-bold transition-colors cursor-pointer">
+                                        <i class="fa-solid fa-pen"></i> تعديل
+                                    </button>
+                                    <button onclick="deleteAdminItem('installments', ${idx})" title="حذف" class="px-2.5 py-1 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white text-xs font-bold transition-colors cursor-pointer">
+                                        <i class="fa-solid fa-trash"></i> حذف
+                                    </button>
+                                </div>
+                            ` : ''}
                             <div>
                                 <span class="inline-block px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs font-bold mb-3">${escapeHTML(plan.badge)}</span>
                                 <h4 class="text-2xl font-black text-white mb-1">${escapeHTML(plan.title)}</h4>
@@ -990,14 +1461,25 @@
                     `;
                 });
                 htmlContent += `</div>`;
-                htmlContent += `<div class="p-4 rounded-2xl bg-emerald-950/50 border border-emerald-500/30 text-emerald-300 text-sm font-bold text-center">${data.note}</div>`;
+                htmlContent += `<div class="p-4 rounded-2xl bg-emerald-950/50 border border-emerald-500/30 text-emerald-300 text-sm font-bold text-center">${escapeHTML(data.note)}</div>`;
             }
 
+            // 2. قسم صور للموقع وصور بعد التنفيذ
             if (sectionKey === 'sitePhotos' || sectionKey === 'afterExecution') {
                 htmlContent += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">`;
                 data.gallery.forEach((item, index) => {
                     htmlContent += `
-                        <div class="group rounded-2xl overflow-hidden bg-royal-950 border border-gold-500/30 shadow-lg">
+                        <div class="group relative rounded-2xl overflow-hidden bg-royal-950 border border-gold-500/30 shadow-lg">
+                            ${isAdmin ? `
+                                <div class="absolute top-3 left-3 z-20 flex items-center gap-1.5">
+                                    <button onclick="openAdminItemModal('edit', '${sectionKey}', ${index})" title="تعديل الصورة" class="w-9 h-9 rounded-xl bg-amber-500 hover:bg-amber-400 text-royal-950 flex items-center justify-center shadow-lg cursor-pointer">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+                                    <button onclick="deleteAdminItem('${sectionKey}', ${index})" title="حذف الصورة" class="w-9 h-9 rounded-xl bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-lg cursor-pointer">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
+                            ` : ''}
                             <div class="relative h-60 sm:h-64 overflow-hidden">
                                 <img src="${item.url}" 
                                      onerror="this.src='https://placehold.co/800x500/0a1633/d4af37?text=صورة+${index + 1}'"
@@ -1014,21 +1496,85 @@
                 htmlContent += `</div>`;
             }
 
+            // 3. قسم الوحدات المتاحة
+            if (sectionKey === 'unitsInfo') {
+                htmlContent += `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+                data.items.forEach((unit, idx) => {
+                    htmlContent += `
+                        <div class="bg-royal-950 border border-gold-500/35 rounded-2xl p-5 flex flex-col justify-between hover:border-gold-400 transition-all shadow-lg">
+                            <div>
+                                <div class="flex items-start justify-between gap-2 mb-2">
+                                    <h4 class="text-lg sm:text-xl font-black text-gold-400 flex items-center gap-2">
+                                        <i class="fa-solid fa-building-circle-check"></i>
+                                        <span>${escapeHTML(unit.name)}</span>
+                                    </h4>
+                                    ${isAdmin ? `
+                                        <div class="flex items-center gap-1.5 shrink-0">
+                                            <button onclick="openAdminItemModal('edit', 'unitsInfo', ${idx})" title="تعديل" class="w-8 h-8 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-royal-950 flex items-center justify-center cursor-pointer">
+                                                <i class="fa-solid fa-pen text-xs"></i>
+                                            </button>
+                                            <button onclick="deleteAdminItem('unitsInfo', ${idx})" title="حذف" class="w-8 h-8 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white flex items-center justify-center cursor-pointer">
+                                                <i class="fa-solid fa-trash text-xs"></i>
+                                            </button>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                                <p class="text-slate-300 text-sm leading-relaxed">${escapeHTML(unit.details)}</p>
+                            </div>
+                            <button onclick="closeSectionModal(); handleQuickReply('contact');" class="mt-4 w-full py-2 rounded-xl bg-white/10 hover:bg-gold-500 text-white hover:text-royal-950 font-bold text-xs sm:text-sm transition-colors cursor-pointer">
+                                استفسر عن هذه الوحدة
+                            </button>
+                        </div>
+                    `;
+                });
+                htmlContent += `</div>`;
+            }
+
+            // 4. قسم المساحات المتوفرة
+            if (sectionKey === 'areasInfo') {
+                htmlContent += `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+                data.items.forEach((area, idx) => {
+                    htmlContent += `
+                        <div class="bg-royal-950 border border-gold-500/35 rounded-2xl p-5 flex flex-col justify-between hover:border-gold-400 transition-all shadow-lg">
+                            <div>
+                                <div class="flex items-start justify-between gap-2 mb-2">
+                                    <h4 class="text-lg sm:text-xl font-black text-gold-400 flex items-center gap-2">
+                                        <i class="fa-solid fa-ruler-combined"></i>
+                                        <span>${escapeHTML(area.range)}</span>
+                                    </h4>
+                                    ${isAdmin ? `
+                                        <div class="flex items-center gap-1.5 shrink-0">
+                                            <button onclick="openAdminItemModal('edit', 'areasInfo', ${idx})" title="تعديل" class="w-8 h-8 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-royal-950 flex items-center justify-center cursor-pointer">
+                                                <i class="fa-solid fa-pen text-xs"></i>
+                                            </button>
+                                            <button onclick="deleteAdminItem('areasInfo', ${idx})" title="حذف" class="w-8 h-8 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white flex items-center justify-center cursor-pointer">
+                                                <i class="fa-solid fa-trash text-xs"></i>
+                                            </button>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                                <p class="text-slate-300 text-sm leading-relaxed">${escapeHTML(area.type)}</p>
+                            </div>
+                            <button onclick="closeSectionModal(); handleQuickReply('contact');" class="mt-4 w-full py-2 rounded-xl bg-white/10 hover:bg-gold-500 text-white hover:text-royal-950 font-bold text-xs sm:text-sm transition-colors cursor-pointer">
+                                اطلب المخطط الهندسي
+                            </button>
+                        </div>
+                    `;
+                });
+                htmlContent += `</div>`;
+            }
+
             bodyEl.innerHTML = htmlContent;
 
-            const c = HAMZAWY_DATA.contact;
+            const c = SITE_DATA.contact;
             contactBtnsEl.innerHTML = `
                 <a href="tel:${c.salesPhone}" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-royal-800 hover:bg-gold-500 text-white hover:text-royal-950 border border-gold-500/40 text-xs sm:text-sm font-bold transition-colors">
                     <i class="fa-solid fa-phone"></i>
-                    <span>المبيعات: ${c.salesPhoneDisplay}</span>
+                    <span>المبيعات وخدمة العملاء: <span dir="ltr">${c.salesPhoneDisplay}</span></span>
                 </a>
                 <a href="https://wa.me/${c.whatsappNumber}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold transition-colors">
                     <i class="fa-brands fa-whatsapp text-base"></i>
                     <span>واتساب</span>
-                </a>
-                <a href="${c.facebookUrl}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition-colors">
-                    <i class="fa-brands fa-facebook text-base"></i>
-                    <span>فيسبوك</span>
                 </a>
             `;
 
@@ -1048,7 +1594,7 @@
         });
 
         /* ==================================================================== */
-        /* دوال البوت العقاري الذكي                                              */
+        /* دوال البوت العقاري الذكي (Mohamed Hossein مستشارك العقاري)            */
         /* ==================================================================== */
         let isBotInitialized = false;
 
@@ -1083,12 +1629,12 @@
         function initializeBot() {
             const messagesEl = document.getElementById('chatMessages');
             messagesEl.innerHTML = '';
-            addBotMessage("أهلاً بيك في <strong>حمزاوي العقارية</strong> 🏗️<br>أنا مساعدك العقاري الذكي، ممكن أساعدك في:\n\n" +
-                "🏢 <strong>الوحدات المتاحة</strong> — أنواع和单位 وخدماتنا\n" +
-                "📐 <strong>المساحات</strong> — المخططات والمساحات المتوفرة\n" +
-                "💳 <strong>أنظمة التقسيط</strong> — خطط السداد والمرجعية\n" +
-                "📞 <strong>تواصل معنا</strong> — رقم التواصل الاجتماعي والحجوزات\n\n" +
-                "اختيار واحد أو اكتب سؤالك حر!");
+            addBotMessage("أهلاً بيك مع <strong>Mohamed Hossein مستشارك العقاري</strong> 🏗️<br>أنا مساعدك العقاري الذكي، ممكن أساعدك في:<br><br>" +
+                "🏢 <strong>الوحدات المتاحة</strong> — أنواع الوحدات وخدماتنا<br>" +
+                "📐 <strong>المساحات</strong> — المخططات والمساحات المتوفرة<br>" +
+                "💳 <strong>أنظمة التقسيط</strong> — خطط السداد والمرونة<br>" +
+                "📞 <strong>تواصل معنا</strong> — رقم المبيعات وخدمة العملاء الموحد<br><br>" +
+                "اختر من الأزرار بالأسفل أو اكتب سؤالك مباشرة!");
         }
 
         function addBotMessage(text) {
@@ -1098,7 +1644,7 @@
             msgDiv.innerHTML = `
                 <div class="max-w-[85%] bg-royal-950 border border-gold-500/25 rounded-2xl rounded-tr-sm p-3.5">
                     <p class="text-sm text-white leading-relaxed">${text}</p>
-                    <span class="text-[10px] text-slate-500 mt-1 block">حمزاوي بوت 🤖</span>
+                    <span class="text-[10px] text-gold-400/80 mt-1 block">Mohamed Hossein مستشارك العقاري 🤖</span>
                 </div>
             `;
             messagesEl.appendChild(msgDiv);
@@ -1128,71 +1674,69 @@
             addUserMessage(text);
             input.value = '';
 
-            // Simulate bot typing delay
             setTimeout(() => {
                 processBotResponse(text.toLowerCase());
-            }, 600);
+            }, 500);
         }
 
         function processBotResponse(input) {
-            if (input.includes('وحدة') || input.includes('شقه') || input.includes('شقة') || input.includes('دوبلكس') || input.includes('فيلا') || input.includes('penthouse') || input.includes('بنتهاوس')) {
+            if (input.includes('وحدة') || input.includes('وحدات') || input.includes('شقه') || input.includes('شقة') || input.includes('دوبلكس') || input.includes('فيلا') || input.includes('penthouse') || input.includes('بنتهاوس')) {
                 showUnitsInfo();
-            } else if (input.includes('مساحه') || input.includes('مساحة') || input.includes('متر') || input.includes('plans') || input.includes('مخطط')) {
+            } else if (input.includes('مساحه') || input.includes('مساحة') || input.includes('مساحات') || input.includes('متر') || input.includes('plans') || input.includes('مخطط')) {
                 showAreasInfo();
             } else if (input.includes('تقسيط') || input.includes('قسط') || input.includes('سداد') || input.includes('مقدم') || input.includes('دفع')) {
                 showInstallmentsInfo();
-            } else if (input.includes('تواصل') || input.includes('رقم') || input.includes('اتصل') || input.includes('واتساب') || input.includes('فيس') || input.includes('contact') || input.includes('phone')) {
+            } else if (input.includes('تواصل') || input.includes('رقم') || input.includes('01151997989') || input.includes('اتصل') || input.includes('واتساب') || input.includes('contact') || input.includes('phone')) {
                 showContactInfo();
-            } else if (input.includes('سلام') || input.includes('اهلا') || input.includes('مرحبا') || input.includes('Hello') || input.includes('hi')) {
-                addBotMessage("وعليكم السلام ورحمة الله! 👋<br>أهلاً وسهلاً بيك في حمزاوي العقارية. اختار من الخيارات اللي تحت لأي معلومة تحتاجها، أو اسألني أي سؤال.");
-            } else if (input.includes('شكر') || input.includes('تمام') || input.includes('كويس') || input.includes('بردو')) {
-                addBotMessage("العفو يا هندسة! 😊🙏<br>لو محتاجة أي حاجة تانية أنا موجود لمعاونتك. مشكورين إنك اخترت حمزاوي العقارية! ✨");
+            } else if (input.includes('سلام') || input.includes('اهلا') || input.includes('مرحبا') || input.includes('hello') || input.includes('hi')) {
+                addBotMessage("وعليكم السلام ورحمة الله! 👋<br>أهلاً وسهلاً بيك مع <strong>Mohamed Hossein مستشارك العقاري</strong>. اختر من الخيارات بالأسفل لأي معلومة تحتاجها، أو اكتب سؤالك.");
+            } else if (input.includes('شكر') || input.includes('تمام') || input.includes('كويس')) {
+                addBotMessage("العفو يا فندم! 😊🙏<br>تحت أمرك في أي وقت. سعيد بتواصلك مع <strong>Mohamed Hossein مستشارك العقاري</strong>! ✨");
             } else {
-                addBotMessage("شكراً لسؤالك! 🌟<br>أنا قادر أساعدك في:\n\n" +
+                addBotMessage("شكراً لتواصلك مع <strong>Mohamed Hossein مستشارك العقاري</strong>! 🌟<br>أقدر أساعدك فوراً في:<br><br>" +
                     "🏢 <strong>الوحدات المتاحة</strong><br>" +
                     "📐 <strong>المساحات والمخططات</strong><br>" +
                     "💳 <strong>أنظمة التقسيط</strong><br>" +
-                    "📞 <strong>أرقام التواصل</strong>\n\n" +
-                    "اختار واحد أو حدّد سؤالك أكتر!");
+                    "📞 <strong>التواصل المباشر: 01151997989</strong><br><br>" +
+                    "اختر أحد الأزرار بالأسفل أو اكتب استفسارك!");
             }
         }
 
         function showUnitsInfo() {
             let response = "<strong>🏢 الوحدات المتاحة:</strong><br><br>";
-            HAMZAWY_DATA.unitsInfo.items.forEach(item => {
-                response += `✅ <strong>${item.name}</strong><br><span class="text-slate-300">${item.details}</span><br><br>`;
+            SITE_DATA.unitsInfo.items.forEach(item => {
+                response += `✅ <strong>${escapeHTML(item.name)}</strong><br><span class="text-slate-300">${escapeHTML(item.details)}</span><br><br>`;
             });
-            response += `<span class="text-gold-400 font-bold">💰 أسعار منافسة ومرجعية حسب الوحدة — تواصل معاينة!</span>`;
+            response += `<span class="text-gold-400 font-bold">📞 للحجز والمعاينة: 01151997989</span>`;
             addBotMessage(response);
         }
 
         function showAreasInfo() {
             let response = "<strong>📐 المساحات المتوفرة:</strong><br><br>";
-            HAMZAWY_DATA.areasInfo.items.forEach(item => {
-                response += `📏 <strong>${item.range}</strong><br><span class="text-slate-300">${item.type}</span><br><br>`;
+            SITE_DATA.areasInfo.items.forEach(item => {
+                response += `📏 <strong>${escapeHTML(item.range)}</strong><br><span class="text-slate-300">${escapeHTML(item.type)}</span><br><br>`;
             });
-            response += `<span class="text-gold-400 font-bold">📐 مخططات جاهزة — احجز موعد المعاينة!</span>`;
+            response += `<span class="text-gold-400 font-bold">📞 لطلب المخططات: 01151997989</span>`;
             addBotMessage(response);
         }
 
         function showInstallmentsInfo() {
             let response = "<strong>💳 أنظمة التقسيط:</strong><br><br>";
-            HAMZAWY_DATA.installments.plans.forEach((plan, i) => {
-                response += `<strong>${i+1}. ${plan.title}</strong><br>`;
-                response += `<span class="text-gold-400 text-xs">⏱️ ${plan.duration}</span><br>`;
-                response += `<span class="text-slate-300 text-sm">${plan.details}</span><br><br>`;
+            SITE_DATA.installments.plans.forEach((plan, i) => {
+                response += `<strong>${i+1}. ${escapeHTML(plan.title)}</strong><br>`;
+                response += `<span class="text-gold-400 text-xs">⏱️ ${escapeHTML(plan.duration)}</span><br>`;
+                response += `<span class="text-slate-300 text-sm">${escapeHTML(plan.details)}</span><br><br>`;
             });
-            response += `<div class="p-2.5 rounded-xl bg-emerald-950/50 border border-emerald-500/30 text-emerald-300 text-xs font-bold">${HAMZAWY_DATA.installments.note}</div>`;
+            response += `<div class="p-2.5 rounded-xl bg-emerald-950/50 border border-emerald-500/30 text-emerald-300 text-xs font-bold">${escapeHTML(SITE_DATA.installments.note)}</div>`;
             addBotMessage(response);
         }
 
         function showContactInfo() {
-            const c = HAMZAWY_DATA.contact;
-            let response = "<strong>📞 معلومات التواصل:</strong><br><br>";
-            response += `📱 <strong>خط المبيعات:</strong> ${c.salesPhoneDisplay}<br><br>`;
-            response += `💬 <strong>واتساب:</strong> <a href="https://wa.me/${c.whatsappNumber}" class="text-emerald-400 underline" target="_blank">${c.whatsappDisplay}</a><br><br>`;
-            response += `📘 <strong>فيسبوك:</strong> <a href="${c.facebookUrl}" class="text-blue-400 underline" target="_blank">${c.facebookName}</a><br><br>`;
-            response += `<span class="text-gold-400 font-bold">🕐 مواعيد العمل: السبت - الخميس | 9 ص - 6 م</span>`;
+            const c = SITE_DATA.contact;
+            let response = "<strong>📞 التواصل مع Mohamed Hossein مستشارك العقاري:</strong><br><br>";
+            response += `📱 <strong>المبيعات وخدمة العملاء:</strong> <a href="tel:${c.salesPhone}" class="text-gold-400 font-bold underline" dir="ltr">${c.salesPhoneDisplay}</a><br><br>`;
+            response += `💬 <strong>واتساب مباشر:</strong> <a href="https://wa.me/${c.whatsappNumber}" class="text-emerald-400 font-bold underline" target="_blank" dir="ltr">${c.whatsappDisplay}</a><br><br>`;
+            response += `<span class="text-gold-400 font-bold">🕐 متاحون للرد على استفساراتكم على مدار اليوم</span>`;
             addBotMessage(response);
         }
 
@@ -1222,33 +1766,13 @@
             }
         }
 
-        function triggerBotFromHeader(section) {
-            if (!isBotInitialized) {
-                initializeBot();
-                isBotInitialized = true;
-            }
-            openChatbot();
-
-            setTimeout(() => {
-                switch(section) {
-                    case 'units':
-                        addUserMessage('🏢 عرض الوحدات');
-                        setTimeout(() => showUnitsInfo(), 400);
-                        break;
-                    case 'areas':
-                        addUserMessage('📐 عرض المساحات');
-                        setTimeout(() => showAreasInfo(), 400);
-                        break;
-                }
-            }, 500);
-        }
-
         /* ==================================================================== */
         /* أدوات مساعدة                                                         */
         /* ==================================================================== */
         function escapeHTML(str) {
+            if (str === null || str === undefined) return '';
             const div = document.createElement('div');
-            div.textContent = str;
+            div.textContent = String(str);
             return div.innerHTML;
         }
 
@@ -1268,24 +1792,19 @@
             setTimeout(() => {
                 toast.classList.add('hidden');
                 toast.classList.remove('flex');
-            }, 3000);
+            }, 3200);
         }
 
-        /* ==================================================================== */
-        /* إغلاق النوافذ بالكبسولة ESC                                         */
-        /* ==================================================================== */
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeSectionModal();
                 closeAuthModal();
-                closeAdminAddModal();
+                closeAdminItemModal();
+                closeAdminDashboardModal();
                 closeChatbot();
             }
         });
 
-        /* ==================================================================== */
-        /* التهيئة الأولية عند تحميل الصفحة                                   */
-        /* ==================================================================== */
         window.addEventListener('DOMContentLoaded', () => {
             renderAuthUI();
         });
