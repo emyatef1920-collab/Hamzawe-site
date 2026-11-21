@@ -533,7 +533,7 @@
 
                 <div id="adminImageUploadField" class="space-y-3">
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">رفع صورة من جهازك / هاتفك:</label>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">رفع صورة من جهازك / هاتفك (يتم ضغطها تلقائياً):</label>
                         <label class="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-gold-500/40 hover:border-gold-400 rounded-2xl bg-royal-950/60 cursor-pointer transition-colors">
                             <i class="fa-solid fa-cloud-arrow-up text-2xl text-gold-400 mb-1"></i>
                             <span class="text-xs text-slate-300 font-semibold">اضغط لاختيار صورة من الاستوديو</span>
@@ -829,12 +829,12 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const siteConfigDocRef = doc(db, "siteData", "mainConfig");
-        const clientsDocRef = doc(db, "siteData", "registeredClients");
+        const siteConfigDocRef = doc(db, "siteData", "mainConfig_v2");
+        const clientsDocRef = doc(db, "siteData", "registeredClients_v2");
 
-        const STORAGE_DATA_KEY = 'bgm_site_data_v1';
-        const STORAGE_MODIFIED_FLAG = 'bgm_user_modified_v1';
-        const STORAGE_CLIENTS_KEY = 'bgm_registered_clients_v1';
+        const STORAGE_DATA_KEY = 'bgm_site_data_v2';
+        const STORAGE_MODIFIED_FLAG = 'bgm_user_modified_v2';
+        const STORAGE_CLIENTS_KEY = 'bgm_registered_clients_v2';
 
         const DEFAULT_SITE_DATA = {
             branding: {
@@ -987,7 +987,7 @@
         }
 
         function loadLocalSiteData() {
-            const rawSaved = localStorage.getItem(STORAGE_DATA_KEY) || localStorage.getItem('mh_sales_supervisor_data');
+            const rawSaved = localStorage.getItem(STORAGE_DATA_KEY) || localStorage.getItem('bgm_site_data_v1') || localStorage.getItem('mh_sales_supervisor_data');
             if (rawSaved) {
                 try {
                     return normalizeSiteData(JSON.parse(rawSaved));
@@ -999,11 +999,11 @@
         }
 
         let SITE_DATA = loadLocalSiteData();
-        let REGISTERED_CLIENTS = JSON.parse(localStorage.getItem(STORAGE_CLIENTS_KEY) || localStorage.getItem('mh_registered_clients') || '[]');
+        let REGISTERED_CLIENTS = JSON.parse(localStorage.getItem(STORAGE_CLIENTS_KEY) || localStorage.getItem('bgm_registered_clients_v1') || localStorage.getItem('mh_registered_clients') || '[]');
         let lastLocalMutationAt = 0;
         let isSavingInProgress = false;
 
-        function setDocWithTimeout(docRef, payload, timeoutMs = 8000) {
+        function setDocWithTimeout(docRef, payload, timeoutMs = 12000) {
             return Promise.race([
                 setDoc(docRef, payload),
                 new Promise((_, reject) =>
@@ -1016,7 +1016,6 @@
             try {
                 localStorage.setItem(STORAGE_MODIFIED_FLAG, 'true');
                 localStorage.setItem(STORAGE_DATA_KEY, JSON.stringify(SITE_DATA));
-                localStorage.setItem('mh_sales_supervisor_data', JSON.stringify(SITE_DATA));
             } catch (err) {
                 console.warn("LocalStorage warning:", err);
             }
@@ -1060,7 +1059,6 @@
         async function saveClientsData() {
             try {
                 localStorage.setItem(STORAGE_CLIENTS_KEY, JSON.stringify(REGISTERED_CLIENTS));
-                localStorage.setItem('mh_registered_clients', JSON.stringify(REGISTERED_CLIENTS));
             } catch (err) {
                 console.warn("Clients localStorage warning:", err);
             }
@@ -1080,7 +1078,6 @@
             SITE_DATA = normalizeSiteData(remotePayload.data);
             try {
                 localStorage.setItem(STORAGE_DATA_KEY, JSON.stringify(SITE_DATA));
-                localStorage.setItem('mh_sales_supervisor_data', JSON.stringify(SITE_DATA));
             } catch (err) {}
             applyBrandingToDOM();
 
@@ -1156,6 +1153,37 @@
             if (c1Title) c1Title.textContent = b.card1Title;
             if (c2Title) c2Title.textContent = b.card2Title;
             if (c3Title) c3Title.textContent = b.card3Title;
+        }
+
+        function compressImageFileToDataUrl(file, maxDim = 900, quality = 0.72) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        let { width, height } = img;
+                        if (width > maxDim || height > maxDim) {
+                            if (width > height) {
+                                height = Math.round((height * maxDim) / width);
+                                width = maxDim;
+                            } else {
+                                width = Math.round((width * maxDim) / height);
+                                height = maxDim;
+                            }
+                        }
+                        const canvas = document.createElement('canvas');
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        resolve(canvas.toDataURL('image/jpeg', quality));
+                    };
+                    img.onerror = () => resolve(ev.target.result);
+                    img.src = ev.target.result;
+                };
+                reader.onerror = () => resolve('');
+                reader.readAsDataURL(file);
+            });
         }
 
         /* ==================================================================== */
@@ -1691,17 +1719,15 @@
             }
         }
 
-        function previewAdminFile(event) {
+        async function previewAdminFile(event) {
             const file = event.target.files[0];
             if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                uploadedImageDataUrl = e.target.result;
+            uploadedImageDataUrl = await compressImageFileToDataUrl(file, 900, 0.72);
+            if (uploadedImageDataUrl) {
                 const previewImg = document.getElementById('adminImagePreview');
                 previewImg.src = uploadedImageDataUrl;
                 document.getElementById('adminImagePreviewBox').classList.remove('hidden');
-            };
-            reader.readAsDataURL(file);
+            }
         }
 
         async function handleAdminSaveItem(e) {
