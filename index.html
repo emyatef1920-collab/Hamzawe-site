@@ -240,7 +240,7 @@
             </div>
         </header>
 
-        <!-- شريط تنبيه وتحكم سريع خاص بالأدمن (بدون زر إضافة خارجي) -->
+        <!-- شريط تنبيه وتحكم سريع خاص بالأدمن -->
         <div id="adminBanner" class="hidden w-full bg-gradient-to-l from-gold-600 via-gold-500 to-gold-400 text-royal-950 px-4 sm:px-8 py-2.5 shadow-md">
             <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-2 font-extrabold text-xs sm:text-sm">
@@ -798,8 +798,8 @@
     </div>
 
     <!-- إشعار منبثق (Toast Notification) -->
-    <div id="toastNotification" class="fixed top-6 left-1/2 -translate-x-1/2 z-[80] hidden items-center gap-2 px-5 py-3 rounded-2xl bg-emerald-600 text-white font-bold text-sm shadow-2xl">
-        <i class="fa-solid fa-circle-check"></i>
+    <div id="toastNotification" class="fixed top-6 left-1/2 -translate-x-1/2 z-[80] hidden items-center gap-2 px-5 py-3 rounded-2xl bg-emerald-600 text-white font-bold text-sm shadow-2xl max-w-[92vw] text-center">
+        <i class="fa-solid fa-circle-check shrink-0"></i>
         <span id="toastText">تم بنجاح!</span>
     </div>
 
@@ -1001,42 +1001,72 @@
         let SITE_DATA = loadLocalSiteData();
         let REGISTERED_CLIENTS = JSON.parse(localStorage.getItem(STORAGE_CLIENTS_KEY) || localStorage.getItem('mh_registered_clients') || '[]');
         let lastLocalMutationAt = 0;
+        let isSavingInProgress = false;
+
+        function setDocWithTimeout(docRef, payload, timeoutMs = 8000) {
+            return Promise.race([
+                setDoc(docRef, payload),
+                new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error("انتهت مهلة الاتصال بـ Firestore")), timeoutMs)
+                )
+            ]);
+        }
 
         function saveLocalCache() {
-            localStorage.setItem(STORAGE_MODIFIED_FLAG, 'true');
-            localStorage.setItem(STORAGE_DATA_KEY, JSON.stringify(SITE_DATA));
-            localStorage.setItem('mh_sales_supervisor_data', JSON.stringify(SITE_DATA));
+            try {
+                localStorage.setItem(STORAGE_MODIFIED_FLAG, 'true');
+                localStorage.setItem(STORAGE_DATA_KEY, JSON.stringify(SITE_DATA));
+                localStorage.setItem('mh_sales_supervisor_data', JSON.stringify(SITE_DATA));
+            } catch (err) {
+                console.warn("LocalStorage warning:", err);
+            }
         }
 
         async function saveSiteData(showSuccess = false) {
+            if (isSavingInProgress && showSuccess) {
+                showToast("جاري إرسال التحديثات للسحابة...");
+                return false;
+            }
+            isSavingInProgress = true;
             lastLocalMutationAt = Date.now();
             saveLocalCache();
             applyBrandingToDOM();
+
             try {
-                await setDoc(siteConfigDocRef, { data: SITE_DATA, updatedAt: lastLocalMutationAt });
+                await setDocWithTimeout(siteConfigDocRef, { data: SITE_DATA, updatedAt: lastLocalMutationAt });
                 if (showSuccess) {
                     const timeNow = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
-                    showToast(`تم حفظ جميع التغييرات على السحابة (${timeNow}) وتظهر لكل الأجهزة!`);
+                    showToast(`تم الحفظ على السحابة وجميع الأجهزة (${timeNow})`, false);
                 }
+                return true;
             } catch (err) {
                 console.error("Firestore save error:", err);
                 if (showSuccess) {
-                    showToast("تم الحفظ على جهازك، تحقق من قواعد Firestore في Firebase Console", true);
+                    const reason = err?.code ? ` (${err.code})` : "";
+                    showToast(`تم الحفظ على جهازك، تحقق من اتصال السحابة أو قواعد Firestore${reason}`, true);
                 }
+                return false;
+            } finally {
+                isSavingInProgress = false;
             }
         }
 
         async function commitAllAdminChanges() {
-            await saveSiteData(true);
+            const ok = await saveSiteData(true);
             await saveClientsData();
+            return ok;
         }
 
         async function saveClientsData() {
-            localStorage.setItem(STORAGE_CLIENTS_KEY, JSON.stringify(REGISTERED_CLIENTS));
-            localStorage.setItem('mh_registered_clients', JSON.stringify(REGISTERED_CLIENTS));
+            try {
+                localStorage.setItem(STORAGE_CLIENTS_KEY, JSON.stringify(REGISTERED_CLIENTS));
+                localStorage.setItem('mh_registered_clients', JSON.stringify(REGISTERED_CLIENTS));
+            } catch (err) {
+                console.warn("Clients localStorage warning:", err);
+            }
             updateClientsCountBadge();
             try {
-                await setDoc(clientsDocRef, { list: REGISTERED_CLIENTS, updatedAt: Date.now() });
+                await setDocWithTimeout(clientsDocRef, { list: REGISTERED_CLIENTS, updatedAt: Date.now() });
             } catch (err) {
                 console.error("Firestore clients save error:", err);
             }
@@ -1048,8 +1078,10 @@
             if (remoteUpdatedAt && remoteUpdatedAt < lastLocalMutationAt) return;
 
             SITE_DATA = normalizeSiteData(remotePayload.data);
-            localStorage.setItem(STORAGE_DATA_KEY, JSON.stringify(SITE_DATA));
-            localStorage.setItem('mh_sales_supervisor_data', JSON.stringify(SITE_DATA));
+            try {
+                localStorage.setItem(STORAGE_DATA_KEY, JSON.stringify(SITE_DATA));
+                localStorage.setItem('mh_sales_supervisor_data', JSON.stringify(SITE_DATA));
+            } catch (err) {}
             applyBrandingToDOM();
 
             const sectionModal = document.getElementById('sectionModal');
@@ -1071,12 +1103,16 @@
                 if (snap.exists()) {
                     applyRemoteSnapshot(snap.data());
                 }
+            }, (err) => {
+                console.error("onSnapshot config error:", err);
             });
 
             onSnapshot(clientsDocRef, (snap) => {
                 if (snap.exists() && Array.isArray(snap.data()?.list)) {
                     REGISTERED_CLIENTS = snap.data().list;
-                    localStorage.setItem(STORAGE_CLIENTS_KEY, JSON.stringify(REGISTERED_CLIENTS));
+                    try {
+                        localStorage.setItem(STORAGE_CLIENTS_KEY, JSON.stringify(REGISTERED_CLIENTS));
+                    } catch (err) {}
                     updateClientsCountBadge();
                     const dashModal = document.getElementById('adminDashboardModal');
                     const clientsCont = document.getElementById('dashClientsContainer');
@@ -1084,6 +1120,8 @@
                         renderClientsList();
                     }
                 }
+            }, (err) => {
+                console.error("onSnapshot clients error:", err);
             });
         }
 
@@ -2127,23 +2165,26 @@
             return div.innerHTML;
         }
 
+        let toastTimerId = null;
         function showToast(message, isError = false) {
             const toast = document.getElementById('toastNotification');
             const textEl = document.getElementById('toastText');
-            
+            if (!toast || !textEl) return;
+
             textEl.textContent = message;
-            toast.className = `fixed top-6 left-1/2 -translate-x-1/2 z-[80] flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-sm shadow-2xl ${
+            toast.className = `fixed top-6 left-1/2 -translate-x-1/2 z-[80] flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-sm shadow-2xl max-w-[92vw] text-center ${
                 isError ? 'bg-red-600 text-white' : 'bg-emerald-600 text-white'
             }`;
-            toast.querySelector('i').className = isError ? 'fa-solid fa-circle-exclamation' : 'fa-solid fa-circle-check';
-            
+            toast.querySelector('i').className = isError ? 'fa-solid fa-circle-exclamation shrink-0' : 'fa-solid fa-circle-check shrink-0';
+
             toast.classList.remove('hidden');
             toast.classList.add('flex');
-            
-            setTimeout(() => {
+
+            if (toastTimerId) clearTimeout(toastTimerId);
+            toastTimerId = setTimeout(() => {
                 toast.classList.add('hidden');
                 toast.classList.remove('flex');
-            }, 3200);
+            }, 3600);
         }
 
         Object.assign(window, {
