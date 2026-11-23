@@ -962,6 +962,14 @@
             }
         };
 
+        function normalizeImageUrl(rawUrl) {
+            const trimmed = String(rawUrl || '').trim();
+            if (!trimmed) return '';
+            if (/^data:image\//i.test(trimmed)) return trimmed;
+            const prefixed = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+            return prefixed.replace(/^(https?:\/\/)/i, (m) => m.toLowerCase());
+        }
+
         function normalizeSiteData(parsed) {
             const merged = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
             if (!parsed) return merged;
@@ -974,7 +982,12 @@
                 if (parsed[sec]) {
                     merged[sec] = { ...merged[sec], ...parsed[sec] };
                     if (Array.isArray(parsed[sec].plans)) merged[sec].plans = parsed[sec].plans;
-                    if (Array.isArray(parsed[sec].gallery)) merged[sec].gallery = parsed[sec].gallery;
+                    if (Array.isArray(parsed[sec].gallery)) {
+                        merged[sec].gallery = parsed[sec].gallery.map(item => ({
+                            ...item,
+                            url: normalizeImageUrl(item?.url || '')
+                        }));
+                    }
                     if (Array.isArray(parsed[sec].items)) merged[sec].items = parsed[sec].items;
                 }
             });
@@ -1645,10 +1658,11 @@
             if (mode === 'edit' && itemIndex !== null) {
                 if (targetSection === 'sitePhotos' || targetSection === 'afterExecution') {
                     const item = SITE_DATA[targetSection].gallery[itemIndex];
+                    const cleanUrl = normalizeImageUrl(item.url || '');
                     document.getElementById('adminItemTitle').value = item.caption || '';
-                    document.getElementById('adminImageUrlInput').value = item.url || '';
-                    if (item.url) {
-                        document.getElementById('adminImagePreview').src = item.url;
+                    document.getElementById('adminImageUrlInput').value = cleanUrl;
+                    if (cleanUrl) {
+                        document.getElementById('adminImagePreview').src = cleanUrl;
                         document.getElementById('adminImagePreviewBox').classList.remove('hidden');
                     }
                 } else if (targetSection === 'installments') {
@@ -2198,13 +2212,6 @@
         /* ==================================================================== */
         /* أدوات مساعدة وربط الدوال العامة مع الـ HTML                        */
         /* ==================================================================== */
-        function normalizeImageUrl(rawUrl) {
-            const trimmed = String(rawUrl || '').trim();
-            if (!trimmed) return '';
-            if (/^data:image\//i.test(trimmed)) return trimmed;
-            return trimmed.replace(/^https?:\/\//i, (m) => m.toLowerCase());
-        }
-
         function escapeHTML(str) {
             if (str === null || str === undefined) return '';
             const div = document.createElement('div');
